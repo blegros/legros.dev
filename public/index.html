@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.152.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.160.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/images/favicon.png" />
@@ -9,7 +9,7 @@
 <title>legros.dev</title>
 <meta
   name="title"
-  content="ᕦʕ •ᴥ•ʔᕤ"
+  content="home"
 />
 <meta
   name="description"
@@ -27,7 +27,7 @@
 
 <meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="legros.dev">
-  <meta property="og:title" content="ᕦʕ •ᴥ•ʔᕤ">
+  <meta property="og:title" content="home">
   <meta property="og:description" content="Today’s websites are bloated, slow, and full of scripts, ads, and trackers. This became so commonplace that we lost all sense of perspective, to the point that we now think multi-megabyte webpages are normal.
 The internet has become a bloated mess. Huge JavaScript libraries, countless client-side queries and overly complex frontend frameworks are par for the course these days.
 — Kev Quirk
@@ -40,7 +40,7 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="ᕦʕ •ᴥ•ʔᕤ">
+  <meta name="twitter:title" content="home">
   <meta name="twitter:description" content="Today’s websites are bloated, slow, and full of scripts, ads, and trackers. This became so commonplace that we lost all sense of perspective, to the point that we now think multi-megabyte webpages are normal.
 The internet has become a bloated mess. Huge JavaScript libraries, countless client-side queries and overly complex frontend frameworks are par for the course these days.
 — Kev Quirk
@@ -50,7 +50,7 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
 
 
 
-  <meta itemprop="name" content="ᕦʕ •ᴥ•ʔᕤ">
+  <meta itemprop="name" content="home">
   <meta itemprop="description" content="Today’s websites are bloated, slow, and full of scripts, ads, and trackers. This became so commonplace that we lost all sense of perspective, to the point that we now think multi-megabyte webpages are normal.
 The internet has become a bloated mess. Huge JavaScript libraries, countless client-side queries and overly complex frontend frameworks are par for the course these days.
 — Kev Quirk
@@ -74,10 +74,138 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
 
   <body>
     <header>
-      <nav>
+      <style>
+  header {
+    padding: 0.5rem 1rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header h1 {
+    margin: 0 !important;
+    font-size: 1.5rem !important;
+    width: 100%;
+    max-width: none !important;
+    white-space: nowrap;
+    padding: 0.5rem 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  header h1::-webkit-scrollbar {
+    display: none;
+  }
+
+  .terminal-box {
+    display: flex;
+    align-items: center;
+    background-color: #111;
+    color: #eee;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin: 0 1.25rem;
+    flex-grow: 0;
+    border: 1px solid #333;
+    line-height: 1.2;
+    min-width: 0;
+    animation: terminal-grow 1s ease-in-out 15s forwards;
+  }
+
+  @keyframes terminal-grow {
+    to { flex-grow: 1; }
+  }
+
+  .terminal-box .path { color: #39FF14; }
+  .terminal-box .branch { color: #FF3131; }
+
+  #avatar-viewport {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--mono-font);
+    flex-shrink: 0;
+  }
+
+  .avatar-state {
+    display: none;
+    align-items: center;
+  }
+
+   
+  #avatar-viewport[data-state="neutral"] .state-neutral,
+  #avatar-viewport:not([data-state]) .state-neutral {
+    display: inline-flex;
+  }
+
+   
+  #avatar-viewport[data-state="mad"] .state-mad { display: inline-flex; }
+  #avatar-viewport[data-state="happy"] .state-happy { display: inline-flex; }
+  #avatar-viewport[data-state="thinking"] .state-thinking { display: inline-flex; }
+
+  .emotion-space {
+    display: inline-block;
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background-color: #eee;
+    margin-left: 4px;
+    animation: blink 1s step-end 15s infinite;
+  }
+
+  .terminal-close {
+    opacity: 0;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    font-family: var(--mono-font);
+    font-size: 1.25rem;
+    color: #666;
+    pointer-events: none;
+    animation: fade-in 0.5s forwards 16s;
+    flex-shrink: 0;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  @keyframes fade-in {
+    to { opacity: 1; pointer-events: auto; }
+  }
+
+   
+  .terminal-reset .terminal-box {
+    animation: terminal-shrink 0.3s ease-in-out forwards !important;
+  }
+  .terminal-reset .cursor {
+    animation: none !important;
+  }
+  .terminal-reset .terminal-close {
+    display: none !important;
+  }
+
+  @keyframes terminal-shrink {
+    from { flex-grow: 1; }
+    to { flex-grow: 0; }
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+<nav>
   <a
     href="/"
-    
+    class="current"
     >home</a
   >
 
@@ -105,8 +233,46 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
   </a>
 
 </nav>
-    <h1>ᕦʕ •ᴥ•ʔᕤ</h1>
+<h1>
+  <span id="avatar-viewport" data-state="neutral">
+    <span class="avatar-state state-neutral">
+      <span class="avatar-face">( ಠ‿ಠ)</span>
+      <span class="emotion-space"></span>
+    </span>
+    <span class="avatar-state state-mad">
+      <span class="avatar-face">( ಠ益ಠ)</span>
+      <span class="emotion-space">💢</span>
+    </span>
+    <span class="avatar-state state-happy">
+      <span class="avatar-face">( ^‿^ )</span>
+      <span class="emotion-space">✨</span>
+    </span>
+    <span class="avatar-state state-thinking">
+      <span class="avatar-face">( ಠ_ʖಠ)</span>
+      <span class="emotion-space">💬</span>
+    </span>
+    <span class="avatar-keyboard">[⌨️]</span>
+  </span>
+  <span class="terminal-box">
+    me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $ <span class="cursor"></span>
+  </span>
+  <span class="terminal-close" onclick="resetTerminal()">X</span>
+</h1>
+<script>
+  window.setAvatarState = function(state) {
+    const viewport = document.getElementById("avatar-viewport");
+    if (viewport) viewport.setAttribute("data-state", state);
+  };
 
+  window.resetTerminal = function() {
+    const header = document.querySelector("header");
+    if (header) {
+      header.classList.add("terminal-reset");
+      
+      void header.offsetWidth;
+    }
+  };
+</script>
 
     </header>
     <main>
