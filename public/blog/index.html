@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/images/favicon.png" />
@@ -24,7 +24,7 @@
 
 
 
-<meta property="og:url" content="http://localhost:1313/blog/">
+<meta property="og:url" content="https://legros.dev/blog/">
   <meta property="og:site_name" content="legros.dev">
   <meta property="og:title" content="blog">
   <meta property="og:description" content="Brian LeGros&#39; personal website">
@@ -112,6 +112,36 @@
 
   .terminal-box .path { color: #39FF14; }
   .terminal-box .branch { color: #FF3131; }
+
+  .terminal-pass {
+    background-color: #4caf50;
+    color: white;
+    padding: 0 4px;
+    border-radius: 2px;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 0.75rem;
+  }
+
+  .terminal-success {
+    color: #4caf50;
+    font-weight: bold;
+  }
+
+  .terminal-fail {
+    background-color: #f44336;
+    color: white;
+    padding: 0 4px;
+    border-radius: 2px;
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 0.75rem;
+  }
+
+  .terminal-error {
+    color: #f44336;
+    font-weight: bold;
+  }
 
   #avatar-viewport {
     display: inline-flex;
@@ -256,7 +286,7 @@
     <span class="avatar-keyboard">[⌨️]</span>
   </span>
   <span class="terminal-box">
-    me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $ <span class="cursor"></span>
+    <span id="terminal-prompt">me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $ </span><span id="terminal-content"></span><span class="cursor"></span>
   </span>
   <span class="terminal-close" onclick="resetTerminal()">X</span>
 </h1>
@@ -270,10 +300,94 @@
     const header = document.querySelector("header");
     if (header) {
       header.classList.add("terminal-reset");
+      const content = document.getElementById("terminal-content");
+      const prompt = document.getElementById("terminal-prompt");
+      if (content) content.innerHTML = "";
+      if (prompt) prompt.style.display = "inline";
+      window.setAvatarState("neutral");
       
       void header.offsetWidth;
     }
   };
+
+    (function() {
+    async function typeText(el, text, speed = 80) {
+      for (let i = 0; i < text.length; i++) {
+        el.textContent += text[i];
+        await new Promise(r => setTimeout(r, speed));
+      }
+    }
+
+    const scenes = [
+      async function sceneSuccess(content, prompt, isReset) {
+        await typeText(content, "npm run test");
+        if (isReset()) return;
+        await new Promise(r => setTimeout(r, 1000));
+        if (isReset()) return;
+        prompt.style.display = "none";
+        content.innerHTML = '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed';
+        window.setAvatarState("happy");
+        await new Promise(r => setTimeout(r, 10000));
+        if (isReset()) return;
+        prompt.style.display = "inline";
+        content.innerHTML = "";
+        window.setAvatarState("neutral");
+      },
+      async function sceneFixAndRetry(content, prompt, isReset) {
+        await typeText(content, "npm run test");
+        if (isReset()) return;
+        await new Promise(r => setTimeout(r, 1000));
+        if (isReset()) return;
+        prompt.style.display = "none";
+        content.innerHTML = '<span class="terminal-fail">FAIL</span> <span class="terminal-error">✕</span> 3 tests failed, 39 passed';
+        window.setAvatarState("thinking");
+        await new Promise(r => setTimeout(r, 5000));
+        if (isReset()) return;
+        prompt.style.display = "inline";
+        content.textContent = "";
+        await typeText(content, "npm run test");
+        if (isReset()) return;
+        await new Promise(r => setTimeout(r, 1000));
+        if (isReset()) return;
+        prompt.style.display = "none";
+        content.innerHTML = '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed';
+        window.setAvatarState("happy");
+        await new Promise(r => setTimeout(r, 10000));
+        if (isReset()) return;
+        prompt.style.display = "inline";
+        content.innerHTML = "";
+        window.setAvatarState("neutral");
+      }
+    ];
+
+    async function runSceneLoop() {
+      const content = document.getElementById("terminal-content");
+      const prompt = document.getElementById("terminal-prompt");
+      const header = document.querySelector("header");
+      if (!content || !prompt || !header) return;
+
+      const isReset = () => header.classList.contains("terminal-reset");
+
+      
+      await new Promise(r => setTimeout(r, 17000));
+
+      while (!isReset()) {
+        const scene = scenes[Math.floor(Math.random() * scenes.length)];
+        await scene(content, prompt, isReset);
+        if (isReset()) break;
+        
+        
+        await new Promise(r => setTimeout(r, 10000));
+      }
+    }
+
+    
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runSceneLoop);
+    } else {
+      runSceneLoop();
+    }
+  })();
 </script>
 
     </header>
