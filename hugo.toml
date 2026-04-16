@@ -46,6 +46,10 @@ name = "Brian LeGros"
 email = "me@brianlegros.com"
 #fediverse = "@chensl@mastodon.social"
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [[menu.main]]
 name = "home"
 pageRef = "/"

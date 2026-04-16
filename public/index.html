@@ -102,12 +102,13 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
   .terminal-box {
     display: flex;
     align-items: center;
+    gap: 1ch;
     background-color: #111;
     color: #eee;
     font-family: var(--mono-font);
     font-size: 0.85rem;
     padding: 0.2rem 0.6rem;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     margin: 0 1.25rem;
     flex-grow: 0;
     border: 1px solid #333;
@@ -116,6 +117,11 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
     overflow: hidden;
     white-space: nowrap;
     transition: flex-grow 0.3s ease-in-out;
+  }
+
+  .terminal-typing-area {
+    display: inline-flex;
+    align-items: center;
   }
 
    
@@ -133,10 +139,10 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
   .terminal-pass {
     background-color: #4caf50;
     color: white;
-    padding: 0 4px;
-    border-radius: 2px;
+    padding: 0 0.25rem;
+    border-radius: 0.125rem;
     font-weight: bold;
-    margin-right: 8px;
+    margin-right: 0.5rem;
     font-size: 0.75rem;
   }
 
@@ -148,10 +154,10 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
   .terminal-fail {
     background-color: #f44336;
     color: white;
-    padding: 0 4px;
-    border-radius: 2px;
+    padding: 0 0.25rem;
+    border-radius: 0.125rem;
     font-weight: bold;
-    margin-right: 8px;
+    margin-right: 0.5rem;
     font-size: 0.75rem;
   }
 
@@ -196,11 +202,15 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
   }
 
   .cursor {
-    display: inline-block;
-    width: 8px;
+    display: none;
+    width: 0.5rem;
     height: 1.2em;
     background-color: #eee;
-    margin-left: 4px;
+    margin-left: 0;
+  }
+
+  .terminal-box.is-typing .cursor {
+    display: inline-block;
   }
 
   header.is-opening .cursor {
@@ -335,8 +345,8 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
     </span>
     <span class="avatar-keyboard">[⌨️]</span>
   </span>
-  <span class="terminal-box">
-    <span id="terminal-prompt">me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $ </span><span id="terminal-content"></span><span class="cursor"></span>
+  <span class="terminal-box is-typing">
+    <span id="terminal-prompt">me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $</span><span class="terminal-typing-area"><span id="terminal-content"></span><span class="cursor"></span></span>
   </span>
   <span class="terminal-close" onclick="permanentClose()">X</span>
 </h1>
@@ -350,11 +360,20 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
       if (viewport) viewport.setAttribute("data-state", state);
     };
 
+    function setPromptVisibility(visible) {
+      const prompt = document.getElementById("terminal-prompt");
+      const box = document.querySelector(".terminal-box");
+      if (prompt) prompt.style.display = visible ? "inline" : "none";
+      if (box) {
+        if (visible) box.classList.add("is-typing");
+        else box.classList.remove("is-typing");
+      }
+    }
+
     function clearTerminal() {
       const content = document.getElementById("terminal-content");
-      const prompt = document.getElementById("terminal-prompt");
       if (content) content.innerHTML = "";
-      if (prompt) prompt.style.display = "inline";
+      setPromptVisibility(true);
       window.setAvatarState("neutral");
     }
 
@@ -393,12 +412,12 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
         if (!await typeText(content, "npm run test", cycleId)) return;
         await new Promise(r => setTimeout(r, 1000));
         if (cycleId !== currentCycleId) return;
-        prompt.style.display = "none";
+        setPromptVisibility(false);
         content.innerHTML = '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed';
         window.setAvatarState("happy");
         await new Promise(r => setTimeout(r, 5000));
         if (cycleId !== currentCycleId) return;
-        prompt.style.display = "inline";
+        setPromptVisibility(true);
         content.innerHTML = "";
         window.setAvatarState("neutral");
       },
@@ -406,22 +425,22 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
         if (!await typeText(content, "npm run test", cycleId)) return;
         await new Promise(r => setTimeout(r, 1000));
         if (cycleId !== currentCycleId) return;
-        prompt.style.display = "none";
+        setPromptVisibility(false);
         content.innerHTML = '<span class="terminal-fail">FAIL</span> <span class="terminal-error">✕</span> 3 tests failed, 39 passed';
         window.setAvatarState("thinking");
         await new Promise(r => setTimeout(r, 3000));
         if (cycleId !== currentCycleId) return;
-        prompt.style.display = "inline";
+        setPromptVisibility(true);
         content.textContent = "";
         if (!await typeText(content, "npm run test", cycleId)) return;
         await new Promise(r => setTimeout(r, 1000));
         if (cycleId !== currentCycleId) return;
-        prompt.style.display = "none";
+        setPromptVisibility(false);
         content.innerHTML = '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed';
         window.setAvatarState("happy");
         await new Promise(r => setTimeout(r, 5000));
         if (cycleId !== currentCycleId) return;
-        prompt.style.display = "inline";
+        setPromptVisibility(true);
         content.innerHTML = "";
         window.setAvatarState("neutral");
       }
