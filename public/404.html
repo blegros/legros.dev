@@ -103,6 +103,11 @@
     min-width: 0;
     overflow: hidden;
     white-space: nowrap;
+    transition: flex-grow 0.3s ease-in-out;
+  }
+
+   
+  header.is-opening .terminal-box {
     animation: terminal-grow 1s ease-in-out 15s forwards;
   }
 
@@ -178,6 +183,9 @@
     height: 1.2em;
     background-color: #eee;
     margin-left: 4px;
+  }
+
+  header.is-opening .cursor {
     animation: blink 1s step-end 15s infinite;
   }
 
@@ -189,7 +197,6 @@
     font-size: 1.25rem;
     color: #666;
     pointer-events: none;
-    animation: fade-in 0.5s forwards 16s;
     flex-shrink: 0;
     user-select: none;
     display: inline-flex;
@@ -198,26 +205,51 @@
     vertical-align: middle;
   }
 
+  header.is-opening .terminal-close {
+    animation: fade-in 0.5s forwards 16s;
+  }
+
   @keyframes fade-in {
     to { opacity: 1; pointer-events: auto; }
   }
 
    
-  .terminal-reset .terminal-box {
-    animation: terminal-shrink 0.3s ease-in-out forwards !important;
+  header.is-expanded .terminal-box {
+    flex-grow: 1;
+    animation: none;
   }
-  .terminal-reset .cursor {
+  header.is-expanded .terminal-close {
+    opacity: 1;
+    pointer-events: auto;
+    animation: none;
+    visibility: visible;
+  }
+  header.is-expanded .cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+   
+  header.is-temp-hidden .terminal-box,
+  header.is-permanently-closed .terminal-box {
+    flex-grow: 0 !important;
     animation: none !important;
   }
-  .terminal-reset .terminal-close {
+  header.is-temp-hidden .cursor,
+  header.is-permanently-closed .cursor {
+    animation: none !important;
+  }
+  header.is-temp-hidden .terminal-close,
+  header.is-permanently-closed .terminal-close {
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    animation: none !important;
   }
 
   @media only screen and (max-width: 50rem) {
     .terminal-box {
-      animation: terminal-shrink 0.3s ease-in-out forwards !important;
+      flex-grow: 0 !important;
+      animation: none !important;
     }
     .cursor {
       animation: none !important;
@@ -226,12 +258,8 @@
       visibility: hidden !important;
       opacity: 0 !important;
       pointer-events: none !important;
+      animation: none !important;
     }
-  }
-
-  @keyframes terminal-shrink {
-    from { flex-grow: 1; }
-    to { flex-grow: 0; }
   }
 
   @keyframes blink {
@@ -292,104 +320,139 @@
   <span class="terminal-box">
     <span id="terminal-prompt">me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $ </span><span id="terminal-content"></span><span class="cursor"></span>
   </span>
-  <span class="terminal-close" onclick="resetTerminal()">X</span>
+  <span class="terminal-close" onclick="permanentClose()">X</span>
 </h1>
 <script>
-  window.setAvatarState = function(state) {
-    const viewport = document.getElementById("avatar-viewport");
-    if (viewport) viewport.setAttribute("data-state", state);
-  };
+  (function() {
+    let currentCycleId = 0;
+    let isUserClosed = false;
 
-  window.resetTerminal = function() {
-    const header = document.querySelector("header");
-    if (header) {
-      header.classList.add("terminal-reset");
+    window.setAvatarState = function(state) {
+      const viewport = document.getElementById("avatar-viewport");
+      if (viewport) viewport.setAttribute("data-state", state);
+    };
+
+    function clearTerminal() {
       const content = document.getElementById("terminal-content");
       const prompt = document.getElementById("terminal-prompt");
       if (content) content.innerHTML = "";
       if (prompt) prompt.style.display = "inline";
       window.setAvatarState("neutral");
-      
-      void header.offsetWidth;
     }
-  };
 
-    (function() {
-    async function typeText(el, text, speed = 80) {
+    window.tempReset = function() {
+      const header = document.querySelector("header");
+      if (!header) return;
+      currentCycleId++; 
+      header.classList.remove("is-opening", "is-expanded");
+      header.classList.add("is-temp-hidden");
+      clearTerminal();
+      void header.offsetWidth;
+    };
+
+    window.permanentClose = function() {
+      const header = document.querySelector("header");
+      if (!header) return;
+      isUserClosed = true;
+      currentCycleId++;
+      header.classList.remove("is-opening", "is-expanded", "is-temp-hidden");
+      header.classList.add("is-permanently-closed");
+      clearTerminal();
+      void header.offsetWidth;
+    };
+
+    async function typeText(el, text, cycleId, speed = 80) {
       for (let i = 0; i < text.length; i++) {
+        if (cycleId !== currentCycleId) return false;
         el.textContent += text[i];
         await new Promise(r => setTimeout(r, speed));
       }
+      return true;
     }
 
     const scenes = [
-      async function sceneSuccess(content, prompt, isReset) {
-        await typeText(content, "npm run test");
-        if (isReset()) return;
+      async function sceneSuccess(content, prompt, cycleId) {
+        if (!await typeText(content, "npm run test", cycleId)) return;
         await new Promise(r => setTimeout(r, 1000));
-        if (isReset()) return;
+        if (cycleId !== currentCycleId) return;
         prompt.style.display = "none";
         content.innerHTML = '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed';
         window.setAvatarState("happy");
         await new Promise(r => setTimeout(r, 5000));
-        if (isReset()) return;
+        if (cycleId !== currentCycleId) return;
         prompt.style.display = "inline";
         content.innerHTML = "";
         window.setAvatarState("neutral");
       },
-      async function sceneFixAndRetry(content, prompt, isReset) {
-        await typeText(content, "npm run test");
-        if (isReset()) return;
+      async function sceneFixAndRetry(content, prompt, cycleId) {
+        if (!await typeText(content, "npm run test", cycleId)) return;
         await new Promise(r => setTimeout(r, 1000));
-        if (isReset()) return;
+        if (cycleId !== currentCycleId) return;
         prompt.style.display = "none";
         content.innerHTML = '<span class="terminal-fail">FAIL</span> <span class="terminal-error">✕</span> 3 tests failed, 39 passed';
         window.setAvatarState("thinking");
         await new Promise(r => setTimeout(r, 3000));
-        if (isReset()) return;
+        if (cycleId !== currentCycleId) return;
         prompt.style.display = "inline";
         content.textContent = "";
-        await typeText(content, "npm run test");
-        if (isReset()) return;
+        if (!await typeText(content, "npm run test", cycleId)) return;
         await new Promise(r => setTimeout(r, 1000));
-        if (isReset()) return;
+        if (cycleId !== currentCycleId) return;
         prompt.style.display = "none";
         content.innerHTML = '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed';
         window.setAvatarState("happy");
         await new Promise(r => setTimeout(r, 5000));
-        if (isReset()) return;
+        if (cycleId !== currentCycleId) return;
         prompt.style.display = "inline";
         content.innerHTML = "";
         window.setAvatarState("neutral");
       }
     ];
 
-    async function runSceneLoop() {
+    async function startTerminalCycle() {
+      const header = document.querySelector("header");
       const content = document.getElementById("terminal-content");
       const prompt = document.getElementById("terminal-prompt");
-      const header = document.querySelector("header");
-      if (!content || !prompt || !header) return;
+      if (!header || !content || !prompt || isUserClosed) return;
 
-      const isReset = () => header.classList.contains("terminal-reset");
+      const mql = window.matchMedia("(max-width: 50rem)");
+      if (mql.matches) return;
+
+      const cycleId = ++currentCycleId;
+      header.classList.remove("is-temp-hidden", "is-expanded");
+      header.classList.add("is-opening");
 
       
       await new Promise(r => setTimeout(r, 17000));
+      if (cycleId !== currentCycleId) return;
 
-      while (!isReset()) {
+      header.classList.remove("is-opening");
+      header.classList.add("is-expanded");
+
+      while (cycleId === currentCycleId) {
         const scene = scenes[Math.floor(Math.random() * scenes.length)];
-        await scene(content, prompt, isReset);
-        if (isReset()) break;
-        
-        
+        await scene(content, prompt, cycleId);
+        if (cycleId !== currentCycleId) break;
         await new Promise(r => setTimeout(r, 10000));
       }
     }
 
     
+    const mql = window.matchMedia("(max-width: 50rem)");
+    mql.addEventListener("change", (e) => {
+      if (e.matches) {
+        window.tempReset();
+      } else {
+        startTerminalCycle();
+      }
+    });
+
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", runSceneLoop);
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!mql.matches) startTerminalCycle();
+      });
     } else {
-      runSceneLoop();
+      if (!mql.matches) startTerminalCycle();
     }
   })();
 </script>
