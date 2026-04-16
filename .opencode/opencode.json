@@ -1,0 +1,8 @@
+{
+  "permission": {
+    "skill": {
+      "*": "ask",
+      "agent-browser": "allow"
+    }
+  }
+}

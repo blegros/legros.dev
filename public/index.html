@@ -113,6 +113,8 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
     border: 1px solid #333;
     line-height: 1.2;
     min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
     animation: terminal-grow 1s ease-in-out 15s forwards;
   }
 
@@ -193,6 +195,18 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
     display: none !important;
   }
 
+  @media only screen and (max-width: 50rem) {
+    .terminal-box {
+      animation: terminal-shrink 0.3s ease-in-out forwards !important;
+    }
+    .cursor {
+      animation: none !important;
+    }
+    .terminal-close {
+      display: none !important;
+    }
+  }
+
   @keyframes terminal-shrink {
     from { flex-grow: 1; }
     to { flex-grow: 0; }
@@ -236,7 +250,7 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
 <h1>
   <span id="avatar-viewport" data-state="neutral">
     <span class="avatar-state state-neutral">
-      <span class="avatar-face">( ಠ‿ಠ)</span>
+      <span class="avatar-face">( ಠ◡ಠ)</span>
       <span class="emotion-space"></span>
     </span>
     <span class="avatar-state state-mad">
