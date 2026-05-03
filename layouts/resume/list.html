@@ -1,0 +1,155 @@
+{{ define "main" }}
+  <content>
+    <style>
+      #qr-generate-btn {
+        font-family: var(--mono-font);
+      }
+      #qr-dialog {
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background: var(--bg);
+        color: var(--color);
+        max-width: 90vw;
+      }
+      #qr-dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .qr-dialog-header {
+        text-align: center;
+        margin-bottom: 0.75rem;
+      }
+      .qr-dialog-header h3 { margin: 0; }
+      .qr-dialog-header p  { margin: 0.15rem 0 0; font-size: 0.9rem; }
+      #qr-canvas-wrap {
+        position: relative;
+        display: block;
+        width: min(80vw, 320px);
+        margin: 0 auto;
+        background: #fff;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+      }
+      #qr-canvas-wrap svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .qr-center-face {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--mono-font);
+        background: #fff;
+        color: #111;
+        padding: 0.2rem 0.45rem;
+        border-radius: 0.25rem;
+        font-size: 0.95rem;
+        line-height: 1;
+        white-space: nowrap;
+        box-shadow: 0 0 0 2px #fff;
+      }
+      .qr-dialog-actions {
+        text-align: center;
+        margin-top: 0.75rem;
+      }
+    </style>
+
+    <p>
+      <button id="qr-generate-btn" type="button">Generate contact QR code</button>
+    </p>
+
+    {{ $siteURL := strings.TrimRight "/" site.BaseURL }}
+    <dialog id="qr-dialog">
+      <header class="qr-dialog-header">
+        <h3>{{ site.Params.author.name }}</h3>
+        <p><a href="{{ $siteURL }}">{{ $siteURL }}</a></p>
+      </header>
+      <div id="qr-canvas-wrap">
+        <div id="qr-output"></div>
+        <span class="qr-center-face" aria-hidden="true">( ^‿^ )</span>
+      </div>
+      <form method="dialog" class="qr-dialog-actions">
+        <button>Close</button>
+      </form>
+    </dialog>
+
+    {{ if .Data.Singular }}
+      <h3>{{ T "filtering_for" }} "{{ .Title }}"</h3>
+      <small>
+        {{ $mainSection := index (.Site.MainSections) 0 }}
+        <a href="{{ relURL $mainSection }}">{{ T "remove_filter" }}</a>
+      </small>
+    {{ end }}
+    {{ if or .Paginator.HasPrev .Paginator.HasNext }}
+      {{- partial "pagination.html" . -}}
+    {{ end }}
+    <ul class="blog-posts">
+      {{ range .Paginator.Pages }}
+        <li>
+          <span>
+            <i>
+              <time datetime="{{ .Date.Format "2006-01-02" }}" pubdate>
+                {{ .Date.Format (default "2006-01-02" .Site.Params.dateFormat) }}
+              </time>
+            </i>
+          </span>
+          {{ if .Params.link }}
+            <a href="{{ .Params.link }}" target="_blank">{{ .Title }} ↪</a>
+          {{ else }}
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ end }}
+        </li>
+      {{ else }}
+        <li>{{ T "no_posts" }}</li>
+      {{ end }}
+    </ul>
+    {{ if not .Data.Singular }}
+      <small>
+        <div>
+          {{ range .Site.Taxonomies.tags }}
+            <a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }}</a>&nbsp;&nbsp;
+          {{ end }}
+        </div>
+      </small>
+    {{ end }}
+
+    <script src="/js/qrcode.min.js"></script>
+    <script>
+      (function () {
+        const name    = {{ site.Params.author.name | jsonify | safeJS }};
+        const email   = {{ site.Params.author.email | jsonify | safeJS }};
+        const website = {{ $siteURL | jsonify | safeJS }};
+
+        const parts = name.split(' ');
+        const family = parts.length > 1 ? parts.pop() : '';
+        const given  = parts.join(' ');
+
+        const vcard = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:' + name,
+          'N:' + family + ';' + given + ';;;',
+          'EMAIL;TYPE=INTERNET:' + email,
+          'URL:' + website,
+          'END:VCARD',
+          ''
+        ].join('\r\n');
+
+        const btn = document.getElementById('qr-generate-btn');
+        const dlg = document.getElementById('qr-dialog');
+        const out = document.getElementById('qr-output');
+
+        btn.addEventListener('click', function () {
+          const qr = qrcode(0, 'H');
+          qr.addData(vcard);
+          qr.make();
+          out.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 4, scalable: true });
+          if (typeof dlg.showModal === 'function') dlg.showModal();
+          else dlg.setAttribute('open', '');
+        });
+      })();
+    </script>
+  </content>
+{{ end }}

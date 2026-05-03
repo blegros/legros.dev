@@ -1,0 +1,78 @@
+# Basic config
+baseURL = 'https://legros.dev/'
+languageCode = 'en-us'
+title = 'legros.dev'
+copyright = "© 2025 Brian LeGros"
+theme = "hugo-simple"
+mainSections = ["blog", "resume"]
+
+# Generate a nice robots.txt for SEO
+enableRobotsTXT = true
+
+# https://github.com/gohugoio/hugo/issues/12152
+capitalizeListTitles = false
+
+# Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
+disableKinds = ["taxonomy"]
+# ignoreErrors = ["error-disable-taxonomy"]
+[taxonomies]
+tag = "tags"
+
+[permalinks]
+blog = "/:slugorcontentbasename/"
+tags = "/blog/:slug"
+
+[markup.goldmark.renderer]
+unsafe = true
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 3
+[markup.highlight]
+lineNos = true
+lineNumbersInTable = false
+noClasses = true
+style = "catppuccin-mocha"
+
+[params]
+title = "legros.dev"
+description = "Brian LeGros' personal website"
+favicon = "images/favicon.png"
+dateFormat = "2006-01-02"
+hideMadeWithLine = true
+hideRSSLink = false
+
+[params.author]
+name = "Brian LeGros"
+email = "me@brianlegros.com"
+#fediverse = "@chensl@mastodon.social"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+[[menu.main]]
+name = "home"
+pageRef = "/"
+weight = 10
+[[menu.main]]
+name = "blog"
+pageRef = "/blog"
+weight = 20
+[[menu.main]]
+name = "resumé"
+pageRef = "/resume"
+weight = 20
+
+[services.rss]
+limit = 50
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+# Generate RSS for home only.
+section = ["html"]
+taxonomy = ["html"]
+term = ["html"]
+
+
