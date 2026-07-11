@@ -99,7 +99,17 @@
         <h2>experience</h2>
         <div class="resume-timeline">
           {{ range . }}
+            {{ $yrs := split .period "–" }}
+            {{ $start := trim (index $yrs 0) " " }}
+            {{ $end := $start }}
+            {{ if gt (len $yrs) 1 }}{{ $end = trim (index $yrs 1) " " }}{{ end }}
             <div class="resume-job">
+              <div class="resume-job-rail" aria-hidden="true">
+                <span class="resume-rail-line"></span>
+                {{ with $end }}<span class="resume-rail-end">{{ . }}</span>{{ end }}
+                <span class="resume-rail-triangles"><i></i><i></i><i></i></span>
+                <span class="resume-rail-start">{{ $start }}</span>
+              </div>
               <div class="resume-job-head">
                 <h3 class="resume-job-title">{{ .title }}</h3>
                 <span class="resume-job-period">{{ .period }}</span>
