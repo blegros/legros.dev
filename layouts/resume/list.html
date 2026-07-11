@@ -99,10 +99,13 @@
         <h2>experience</h2>
         <div class="resume-timeline">
           {{ range . }}
+            {{ $job := . }}
             {{ $yrs := split .period "–" }}
             {{ $start := trim (index $yrs 0) " " }}
             {{ $end := $start }}
             {{ if gt (len $yrs) 1 }}{{ $end = trim (index $yrs 1) " " }}{{ end }}
+            {{ $logo := "" }}
+            {{ with $job.logo }}{{ $logo = resources.Get (printf "images/%s" .) }}{{ end }}
             <div class="resume-job">
               <div class="resume-job-rail" aria-hidden="true">
                 <span class="resume-rail-line"></span>
@@ -110,13 +113,25 @@
                 <span class="resume-rail-triangles"><i></i><i></i><i></i></span>
                 <span class="resume-rail-start">{{ $start }}</span>
               </div>
-              <div class="resume-job-head">
-                <h3 class="resume-job-title">{{ .title }}</h3>
-                <span class="resume-job-period">{{ .period }}</span>
+              <div class="resume-job-main">
+                <div class="resume-job-logo">
+                  {{ if $logo }}
+                    {{ $fit := $logo.Fit "160x160" }}
+                    <img src="{{ $fit.RelPermalink }}" width="{{ $fit.Width }}" height="{{ $fit.Height }}" alt="{{ $job.company }} logo" loading="lazy" decoding="async">
+                  {{ else }}
+                    <span class="resume-job-logo-fallback" aria-hidden="true">{{ substr $job.company 0 1 }}</span>
+                  {{ end }}
+                </div>
+                <div class="resume-job-heading">
+                  <div class="resume-job-head">
+                    <h3 class="resume-job-title">{{ $job.title }}</h3>
+                    <span class="resume-job-period">{{ $job.period }}</span>
+                  </div>
+                  <p class="resume-job-company">{{ $job.company }}</p>
+                </div>
               </div>
-              <p class="resume-job-company">{{ .company }}</p>
               <ul>
-                {{ range .highlights }}
+                {{ range $job.highlights }}
                   <li>{{ . }}</li>
                 {{ end }}
               </ul>
@@ -127,17 +142,29 @@
     {{ end }}
 
     {{ with $r.education }}
+      {{ $eduLogo := "" }}
+      {{ with .logo }}{{ $eduLogo = resources.Get (printf "images/%s" .) }}{{ end }}
       <section class="resume-section">
         <h2>education</h2>
-        <div class="resume-edu-head">
-          <p class="resume-edu-school">{{ .school }}</p>
-          <span class="resume-edu-date">{{ .date }}</span>
-        </div>
-        <ul>
-          {{ range .details }}
-            <li>{{ . }}</li>
+        <div class="resume-edu">
+          {{ if $eduLogo }}
+            {{ $fit := $eduLogo.Fit "160x160" }}
+            <div class="resume-job-logo">
+              <img src="{{ $fit.RelPermalink }}" width="{{ $fit.Width }}" height="{{ $fit.Height }}" alt="{{ .school }} logo" loading="lazy" decoding="async">
+            </div>
           {{ end }}
-        </ul>
+          <div class="resume-edu-body">
+            <div class="resume-edu-head">
+              <p class="resume-edu-school">{{ .school }}</p>
+              <span class="resume-edu-date">{{ .date }}</span>
+            </div>
+            <ul>
+              {{ range .details }}
+                <li>{{ . }}</li>
+              {{ end }}
+            </ul>
+          </div>
+        </div>
       </section>
     {{ end }}
 

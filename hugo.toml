@@ -12,6 +12,11 @@ enableRobotsTXT = true
 # https://github.com/gohugoio/hugo/issues/12152
 capitalizeListTitles = false
 
+# High-quality image processing for resume logos (Lanczos resampling, max quality).
+[imaging]
+resampleFilter = "Lanczos"
+quality = 100
+
 # Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
 disableKinds = ["taxonomy"]
 # ignoreErrors = ["error-disable-taxonomy"]

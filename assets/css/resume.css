@@ -262,6 +262,50 @@
   }
 }
 
+/* Logo + heading row. The logo sits to the left of the title/company block. */
+.resume-job-main {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.resume-job-heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Fixed-size logo chip: a neutral light plate keeps varying logos (dark-on-
+   transparent, colour, wide, square) legible and uniform in both themes. The
+   processed image is letterboxed inside via object-fit: contain. */
+.resume-job-logo {
+  flex: 0 0 auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  background: #fff;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--standard-border-radius);
+  overflow: hidden;
+}
+
+.resume-job-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.resume-job-logo-fallback {
+  font-family: var(--mono-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
 .resume-job-head {
   display: flex;
   flex-wrap: wrap;
@@ -298,6 +342,28 @@
 }
 
 /* ---- Education & activities ---- */
+/* Logo chip (reusing .resume-job-logo) sits to the left, aligned to the top so
+   it lines up with the school name rather than centring on the whole block. */
+.resume-edu {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.resume-edu-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.resume-edu-body ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.resume-edu-body li {
+  margin-bottom: 0.4rem;
+}
+
 .resume-edu-head {
   display: flex;
   flex-wrap: wrap;
@@ -324,6 +390,18 @@
   }
   .resume-chip {
     white-space: normal;
+  }
+  .resume-job-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.25rem;
+  }
+  .resume-job-main,
+  .resume-edu {
+    gap: 0.6rem;
+  }
+  .resume-job-logo-fallback {
+    font-size: 1.2rem;
   }
 }
 

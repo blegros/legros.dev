@@ -38,6 +38,7 @@ experience:
   - title: "Senior Engineering Specialist, R&D"
     company: "Voalte / Hillrom / Baxter International"
     period: "2014 – Now"
+    logo: "baxter.png"
     highlights:
       - "Launched a new product to production for a mobile and web-based application utilizing
          serverless technologies in the Azure cloud. Responsible for all architecture and design
@@ -70,6 +71,7 @@ experience:
   - title: "Senior Software Engineer"
     company: "Highwinds, CNS Division"
     period: "2008 – 2014"
+    logo: "highwinds.png"
     highlights:
       - "Lead the technical aspects of development for the company's customer portal,
          StrikeTracker, using AngularJS, NodeJS, PHP, and MySQL as well as Java and Flex in earlier
@@ -96,6 +98,7 @@ experience:
   - title: "Web Software Engineer"
     company: "Space Coast Credit Union"
     period: "2008"
+    logo: "space_cost_cu.png"
     highlights:
       - "Aided in the technical organization for the newly formed Web Systems department, focusing
          on the creation of standards and practices for developers as well as selecting the
@@ -113,6 +116,7 @@ experience:
   - title: "Technical Lead / Application Developer"
     company: "Westgate Resorts"
     period: "2006 – 2008"
+    logo: "westgate_resorts.png"
     highlights:
       - "Aided in the creation, maintenance, and extension of over 30 web applications for internal
          and external business units utilizing ColdFusion, Java, Flex, and Oracle."
@@ -129,6 +133,7 @@ experience:
   - title: "Division Lead / Application Developer"
     company: "NextWeb Media"
     period: "2005 – 2006"
+    logo: "next_web_media.png"
     highlights:
       - "Aided in the development of over 25 web applications focused on marketing and advertising."
       - "Migrated and consolidated the code base for 21 applications into 10 through the
@@ -143,6 +148,7 @@ experience:
   - title: "Web Applications Manager"
     company: "Foreign Currency Exchange Corp. / Bank of Ireland Group"
     period: "2000 – 2005"
+    logo: "boi_group.png"
     highlights:
       - "Utilized object oriented practices to design and construct an international, enterprise
          web-based portal used for recording foreign currency transactions and reporting upon them."
@@ -156,6 +162,7 @@ experience:
 education:
   school: "University of Central Florida — Orlando, FL"
   date: "Graduated 2001"
+  logo: "ucf.png"
   details:
     - "Bachelor of Science, Computer Science"
     - "Minor, Management of Information Systems"
