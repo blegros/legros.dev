@@ -1,0 +1,171 @@
+summary: >-
+  Software professional working in the industries of healthcare, network services, banking,
+  marketing, hospitality, and finance over the last 26 years. Focused on finding a company where I
+  can participate in agile software engineering practices and be challenged by new problem domains.
+
+contact:
+  location: "Indialantic, FL"
+  email: "me@brianlegros.com"
+
+skills:
+  - category: "Programming Languages"
+    items: ["TypeScript", "JavaScript", "Java", "PHP", "C#", "ColdFusion", "Bash"]
+  - category: "Platforms / Standards / Libraries"
+    items:
+      ["GraphQL", "Apollo Federation", "OAuth", "WebAuthn", "REST", "NodeJS", "React",
+       "React Native", "RxJS", "SIP", "Spring", "Hibernate", "ASP.NET MVC", "AngularJS"]
+  - category: "Testing"
+    items:
+      ["vitest", "jest", "mocha", "chai", "sinon", "enzyme", "React Testing Library", "k6",
+       "selenium/webdriver", "JUnit", "JMock", "DBUnit", "HTMLUnit", "php-unit"]
+  - category: "DevOps"
+    items:
+      ["Docker", "docker-compose", "GitHub Actions", "k8s", "Terraform", "Webpack", "Turbopack",
+       "Maven", "Ant", "Ivy", "Phing", "Composer", "Gradle", "Make", "Jenkins", "Vagrant",
+       "Puppet", "Fastlane"]
+  - category: "Databases"
+    items:
+      ["PostgreSQL", "Redis", "Azure Table Storage", "MySQL", "MSSQL", "Oracle", "MongoDB",
+       "CouchDB"]
+  - category: "Messaging"
+    items: ["RabbitMQ", "Azure Service Bus", "NATS"]
+  - category: "Cloud"
+    items: ["Azure"]
+  - category: "AI"
+    items: ["Claude", "GPT", "Gemini", "OpenCode", "Claude Code"]
+
+experience:
+  - title: "Senior Engineering Specialist, R&D"
+    company: "Voalte / Hillrom / Baxter International"
+    period: "2014 – Present"
+    highlights:
+      - "Launched a new product to production for a mobile and web-based application utilizing
+         serverless technologies in the Azure cloud. Responsible for all architecture and design
+         decisions. Provided technical leadership for an engineering team of 15 developers and
+         testers. Using Docker, NodeJS, React, PostgreSQL, Redis, GitHub Actions, and a multitude
+         of Azure services."
+      - "Leading multiple efforts to develop a middleware layer for a diverse set of products
+         acquired through M&A to share functionality and create a uniform mechanism for
+         interoperation. Responsible for guiding teams on the new communication standard based on
+         protocols such as HTTP, AMQP, SIP, and WebSockets. Supporting services written for NodeJS
+         and .NET platforms using GraphQL and Apollo Federation as an application protocol."
+      - "Lead web engineer for customer facing web products using React, Preact, AngularJS, Apollo,
+         Babel, Tailwind, PostCSS, LESS, SASS, Webpack, Turbopack, Vite, Gulp, and NodeJS."
+      - "Lead engineer on customer facing SDK written in TypeScript/JavaScript for use in the
+         browser and NodeJS."
+      - "Shepherded the introduction of practical AI tooling into projects using tools such as
+         OpenCode, Claude, and Docker. Focused on human-on-the-loop style development utilizing
+         skill development, memory tools, and MCP integrations that helped to simplify developer
+         workflows and increase productivity."
+      - "Spearheaded DevOps initiatives to provide continuous integration and delivery pipelines
+         for multiple products and services."
+      - "Developed in-house load/stress testing tools for proprietary protocols as well as leading
+         an initiative to create load test coverage for multiple customer facing services using k6."
+      - "Primary maintainer for wikis for multiple teams documenting standards, best practices,
+         how-to guides, policies, and architectural documentation."
+      - "R&D community lead for the web development group for the last 14 years. Responsible for
+         presentations, organization of forums, and bringing external speakers to the group on
+         various topics."
+
+  - title: "Senior Software Engineer"
+    company: "Highwinds, CNS Division"
+    period: "2008 – 2014"
+    highlights:
+      - "Lead the technical aspects of development for the company's customer portal,
+         StrikeTracker, using AngularJS, NodeJS, PHP, and MySQL as well as Java and Flex in earlier
+         revisions."
+      - "Lead the technical aspects of product development for the company's RESTful web service
+         API using Java and PHP."
+      - "Administered a MySQL database used to store hundreds of millions of records of time-series
+         network usage samples and various aggregations supporting customer portal analytics and
+         billing. Developed strategies for data retention, data partitioning, and indexing."
+      - "Designed, created, and maintained multiple DevOps processes including automated builds and
+         deployments via continuous integration and delivery pipelines using Grunt, Phing, Maven,
+         Fabric, Make, Vagrant, Puppet, and Jenkins for applications written in Java, Ruby, and C++."
+      - "Created and nurtured a series of automated test suites to address the concerns of unit,
+         integration, and functional testing using Mocha, Karma, Selenium Webdriver, PhpUnit,
+         JUnit, DBUnit, Spring Test, and HTMLUnit."
+      - "Made large strides to bring a structured, measurable approach to performance testing for
+         various HTTP and FTP-based cloud products using JMeter."
+      - "Familiar with socket-based programming, as well as asynchronous and threaded process
+         development. Developed a custom client library to support the NNTP protocol as well as
+         background jobs to precompute aggregate analytics on large datasets."
+      - "Primary maintainer for the product team's wiki documenting standards, best practices,
+         how-to guides, and cross team policies."
+
+  - title: "Web Software Engineer"
+    company: "Space Coast Credit Union"
+    period: "2008"
+    highlights:
+      - "Aided in the technical organization for the newly formed Web Systems department, focusing
+         on the creation of standards and practices for developers as well as selecting the
+         technology stack to work in cooperation with existing .NET applications."
+      - "Created and maintained an automated functional test suite, using Selenium, to validate
+         custom vendor builds of the online banking platform, reducing response time from 2 weeks
+         to 3 days."
+      - "Created and maintained a unified reporting application for the online banking system using
+         .NET with C#, ASP.NET MVC, jQuery, LINQ, and iBatis.NET."
+      - "Prototyped a custom monitoring application for the online banking system using .NET with
+         C#, WCF, Autofac, WMI, and LINQ."
+      - "Received training to work as a developer on the Corillian Voyager online banking platform
+         including the Intelligent Authentication component."
+
+  - title: "Technical Lead / Application Developer"
+    company: "Westgate Resorts"
+    period: "2006 – 2008"
+    highlights:
+      - "Aided in the creation, maintenance, and extension of over 30 web applications for internal
+         and external business units utilizing ColdFusion, Java, Flex, and Oracle."
+      - "Implemented DevOps workflows to automate build, test, and deployment workflows."
+      - "Lead a major refactoring effort to improve application authentication, authorization, and
+         auditing across multiple teams."
+      - "Responsible for training junior developers as well as developing and executing an
+         architectural and code review process for multiple software teams."
+      - "Lead developers in documenting coding standards and best practices as well as procedures
+         to keep documentation up-to-date and relevant."
+      - "Introduced a technical one-on-one review process to gather technical feedback and
+         perspective from developers to help management set technical direction."
+
+  - title: "Division Lead / Application Developer"
+    company: "NextWeb Media"
+    period: "2005 – 2006"
+    highlights:
+      - "Aided in the development of over 25 web applications focused on marketing and advertising."
+      - "Migrated and consolidated the code base for 21 applications into 10 through the
+         introduction of a shared object model representing the problem domain and the optimization
+         of major portions of each application's code base."
+      - "Improved partner integration by creating a standard service API adding features such as
+         real-time messaging."
+      - "Utilized ColdFusion, Java, and MSSQL to create, enhance, and maintain the company's web
+         applications."
+      - "Lead 2–3 person development teams on 10 project initiatives from inception to completion."
+
+  - title: "Web Applications Manager"
+    company: "Foreign Currency Exchange Corp. / Bank of Ireland Group"
+    period: "2000 – 2005"
+    highlights:
+      - "Utilized object oriented practices to design and construct an international, enterprise
+         web-based portal used for recording foreign currency transactions and reporting upon them."
+      - "Developed multiple applications using ColdFusion, Java, C#, ASP.NET, and MSSQL for both
+         customer and in-house use."
+      - "Created and maintained over 50 projects from inception to completion."
+      - "Acted in the role of lead developer, regularly setting technology direction for all
+         software development at the company for up to 7 developers at any one time."
+      - "Helped to grow a 3 person development staff to an 11 person department over 4 years."
+
+education:
+  school: "University of Central Florida — Orlando, FL"
+  date: "Graduated 2001"
+  details:
+    - "Bachelor of Science, Computer Science"
+    - "Minor, Management of Information Systems"
+
+activities:
+  - "Reading and learning about distributed protocols such as Hyper and DAT along with solutions
+     to problems around topics such as distributed identity management."
+  - "Presenting on topics related to web development, DevOps for developers, testing strategies,
+     and OSS projects at various user groups (corporate and community-based) as well as
+     government / private institutions."
+  - "Past contributor to OSS projects such as Fluint, FlexUnit, flex-mojos, and mockolate."
+  - "As a hobby, I enjoy learning about home automation using Home Assistant with protocols like
+     Z-Wave, Zigbee, Matter, Thread, etc."

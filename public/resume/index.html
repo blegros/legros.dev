@@ -25,26 +25,26 @@
 
 
 <meta property="og:url" content="https://legros.dev/resume/">
-  <meta property="og:site_name" content="legros.dev">
-  <meta property="og:title" content="resumé">
-  <meta property="og:description" content="Brian LeGros&#39; personal website">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
+	<meta property="og:site_name" content="legros.dev">
+	<meta property="og:title" content="resumé">
+	<meta property="og:description" content="Brian LeGros&#39; personal website">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="website">
 
 
 
 
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="resumé">
-  <meta name="twitter:description" content="Brian LeGros&#39; personal website">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="resumé">
+	<meta name="twitter:description" content="Brian LeGros&#39; personal website">
 
 
 
 
 
-  <meta itemprop="name" content="resumé">
-  <meta itemprop="description" content="Brian LeGros&#39; personal website">
+	<meta itemprop="name" content="resumé">
+	<meta itemprop="description" content="Brian LeGros&#39; personal website">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
     
@@ -52,6 +52,9 @@
     
     <link href="/bundle.min.css" rel="stylesheet" />
 
+    
+      
+      <link href="/css/resume.min.css" rel="stylesheet" />
     
 
     
@@ -485,22 +488,559 @@
     </header>
     <main>
       
-  <content>
+  
+  
+  <style>
+    #qr-generate-btn {
+      font-family: var(--mono-font);
+    }
+    #qr-dialog {
+      border: 1px solid #333;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      background: var(--bg);
+      color: var(--color);
+      max-width: 90vw;
+    }
+    #qr-dialog::backdrop {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .qr-dialog-header {
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .qr-dialog-header h3 { margin: 0; }
+    .qr-dialog-header p  { margin: 0.15rem 0 0; font-size: 0.9rem; }
+    #qr-canvas-wrap {
+      position: relative;
+      display: block;
+      width: min(80vw, 320px);
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+    }
+    #qr-canvas-wrap svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .qr-center-face {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--mono-font);
+      background: #fff;
+      color: #111;
+      padding: 0.2rem 0.45rem;
+      border-radius: 0.25rem;
+      font-size: 0.95rem;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: 0 0 0 2px #fff;
+    }
+    .qr-dialog-actions {
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+  </style>
+
+  <article class="resume">
+    <header class="resume-head">
+      <h1 class="resume-name">Brian LeGros</h1>
+      <p class="resume-role">Software Engineer / Architect / Wearer of Many Hats</p>
+      <ul class="resume-contact">
+        <li>📍 Indialantic, FL</li>
+        <li>✉️ <a href="mailto:me@brianlegros.com">me@brianlegros.com</a></li>
+        <li>🔗 <a href="https://legros.dev">legros.dev</a></li>
+      </ul>
+      <div class="resume-actions">
+        <a class="button" href="/Brian-LeGros-Resume.pdf" download>Download PDF</a>
+        <button id="qr-generate-btn" type="button">Generate contact QR code</button>
+      </div>
+    </header>
+
     
+      <section class="resume-section">
+        <p class="resume-summary">Software professional working in the industries of healthcare, network services, banking, marketing, hospitality, and finance over the last 26 years. Focused on finding a company where I can participate in agile software engineering practices and be challenged by new problem domains.</p>
+      </section>
     
-    <ul class="blog-posts">
-      
-        <li>No posts yet</li>
-      
-    </ul>
+
     
-      <small>
-        <div>
+      <section class="resume-section">
+        <h2>skills</h2>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">Programming Languages</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">TypeScript</li>
+              
+                <li class="resume-chip">JavaScript</li>
+              
+                <li class="resume-chip">Java</li>
+              
+                <li class="resume-chip">PHP</li>
+              
+                <li class="resume-chip">C#</li>
+              
+                <li class="resume-chip">ColdFusion</li>
+              
+                <li class="resume-chip">Bash</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">Platforms / Standards / Libraries</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">GraphQL</li>
+              
+                <li class="resume-chip">Apollo Federation</li>
+              
+                <li class="resume-chip">OAuth</li>
+              
+                <li class="resume-chip">WebAuthn</li>
+              
+                <li class="resume-chip">REST</li>
+              
+                <li class="resume-chip">NodeJS</li>
+              
+                <li class="resume-chip">React</li>
+              
+                <li class="resume-chip">React Native</li>
+              
+                <li class="resume-chip">RxJS</li>
+              
+                <li class="resume-chip">SIP</li>
+              
+                <li class="resume-chip">Spring</li>
+              
+                <li class="resume-chip">Hibernate</li>
+              
+                <li class="resume-chip">ASP.NET MVC</li>
+              
+                <li class="resume-chip">AngularJS</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">Testing</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">vitest</li>
+              
+                <li class="resume-chip">jest</li>
+              
+                <li class="resume-chip">mocha</li>
+              
+                <li class="resume-chip">chai</li>
+              
+                <li class="resume-chip">sinon</li>
+              
+                <li class="resume-chip">enzyme</li>
+              
+                <li class="resume-chip">React Testing Library</li>
+              
+                <li class="resume-chip">k6</li>
+              
+                <li class="resume-chip">selenium/webdriver</li>
+              
+                <li class="resume-chip">JUnit</li>
+              
+                <li class="resume-chip">JMock</li>
+              
+                <li class="resume-chip">DBUnit</li>
+              
+                <li class="resume-chip">HTMLUnit</li>
+              
+                <li class="resume-chip">php-unit</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">DevOps</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">Docker</li>
+              
+                <li class="resume-chip">docker-compose</li>
+              
+                <li class="resume-chip">GitHub Actions</li>
+              
+                <li class="resume-chip">k8s</li>
+              
+                <li class="resume-chip">Terraform</li>
+              
+                <li class="resume-chip">Webpack</li>
+              
+                <li class="resume-chip">Turbopack</li>
+              
+                <li class="resume-chip">Maven</li>
+              
+                <li class="resume-chip">Ant</li>
+              
+                <li class="resume-chip">Ivy</li>
+              
+                <li class="resume-chip">Phing</li>
+              
+                <li class="resume-chip">Composer</li>
+              
+                <li class="resume-chip">Gradle</li>
+              
+                <li class="resume-chip">Make</li>
+              
+                <li class="resume-chip">Jenkins</li>
+              
+                <li class="resume-chip">Vagrant</li>
+              
+                <li class="resume-chip">Puppet</li>
+              
+                <li class="resume-chip">Fastlane</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">Databases</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">PostgreSQL</li>
+              
+                <li class="resume-chip">Redis</li>
+              
+                <li class="resume-chip">Azure Table Storage</li>
+              
+                <li class="resume-chip">MySQL</li>
+              
+                <li class="resume-chip">MSSQL</li>
+              
+                <li class="resume-chip">Oracle</li>
+              
+                <li class="resume-chip">MongoDB</li>
+              
+                <li class="resume-chip">CouchDB</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">Messaging</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">RabbitMQ</li>
+              
+                <li class="resume-chip">Azure Service Bus</li>
+              
+                <li class="resume-chip">NATS</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">Cloud</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">Azure</li>
+              
+            </ul>
+          </div>
+        
+          <div class="resume-skill-group">
+            <p class="resume-skill-label">AI</p>
+            <ul class="resume-chips">
+              
+                <li class="resume-chip">Claude</li>
+              
+                <li class="resume-chip">GPT</li>
+              
+                <li class="resume-chip">Gemini</li>
+              
+                <li class="resume-chip">OpenCode</li>
+              
+                <li class="resume-chip">Claude Code</li>
+              
+            </ul>
+          </div>
+        
+      </section>
+    
+
+    
+      <section class="resume-section">
+        <h2>experience</h2>
+        <div class="resume-timeline">
+          
+            <div class="resume-job">
+              <div class="resume-job-head">
+                <h3 class="resume-job-title">Senior Engineering Specialist, R&amp;D</h3>
+                <span class="resume-job-period">2014 – Present</span>
+              </div>
+              <p class="resume-job-company">Voalte / Hillrom / Baxter International</p>
+              <ul>
+                
+                  <li>Launched a new product to production for a mobile and web-based application utilizing serverless technologies in the Azure cloud. Responsible for all architecture and design decisions. Provided technical leadership for an engineering team of 15 developers and testers. Using Docker, NodeJS, React, PostgreSQL, Redis, GitHub Actions, and a multitude of Azure services.</li>
+                
+                  <li>Leading multiple efforts to develop a middleware layer for a diverse set of products acquired through M&amp;A to share functionality and create a uniform mechanism for interoperation. Responsible for guiding teams on the new communication standard based on protocols such as HTTP, AMQP, SIP, and WebSockets. Supporting services written for NodeJS and .NET platforms using GraphQL and Apollo Federation as an application protocol.</li>
+                
+                  <li>Lead web engineer for customer facing web products using React, Preact, AngularJS, Apollo, Babel, Tailwind, PostCSS, LESS, SASS, Webpack, Turbopack, Vite, Gulp, and NodeJS.</li>
+                
+                  <li>Lead engineer on customer facing SDK written in TypeScript/JavaScript for use in the browser and NodeJS.</li>
+                
+                  <li>Shepherded the introduction of practical AI tooling into projects using tools such as OpenCode, Claude, and Docker. Focused on human-on-the-loop style development utilizing skill development, memory tools, and MCP integrations that helped to simplify developer workflows and increase productivity.</li>
+                
+                  <li>Spearheaded DevOps initiatives to provide continuous integration and delivery pipelines for multiple products and services.</li>
+                
+                  <li>Developed in-house load/stress testing tools for proprietary protocols as well as leading an initiative to create load test coverage for multiple customer facing services using k6.</li>
+                
+                  <li>Primary maintainer for wikis for multiple teams documenting standards, best practices, how-to guides, policies, and architectural documentation.</li>
+                
+                  <li>R&amp;D community lead for the web development group for the last 14 years. Responsible for presentations, organization of forums, and bringing external speakers to the group on various topics.</li>
+                
+              </ul>
+            </div>
+          
+            <div class="resume-job">
+              <div class="resume-job-head">
+                <h3 class="resume-job-title">Senior Software Engineer</h3>
+                <span class="resume-job-period">2008 – 2014</span>
+              </div>
+              <p class="resume-job-company">Highwinds, CNS Division</p>
+              <ul>
+                
+                  <li>Lead the technical aspects of development for the company&#39;s customer portal, StrikeTracker, using AngularJS, NodeJS, PHP, and MySQL as well as Java and Flex in earlier revisions.</li>
+                
+                  <li>Lead the technical aspects of product development for the company&#39;s RESTful web service API using Java and PHP.</li>
+                
+                  <li>Administered a MySQL database used to store hundreds of millions of records of time-series network usage samples and various aggregations supporting customer portal analytics and billing. Developed strategies for data retention, data partitioning, and indexing.</li>
+                
+                  <li>Designed, created, and maintained multiple DevOps processes including automated builds and deployments via continuous integration and delivery pipelines using Grunt, Phing, Maven, Fabric, Make, Vagrant, Puppet, and Jenkins for applications written in Java, Ruby, and C&#43;&#43;.</li>
+                
+                  <li>Created and nurtured a series of automated test suites to address the concerns of unit, integration, and functional testing using Mocha, Karma, Selenium Webdriver, PhpUnit, JUnit, DBUnit, Spring Test, and HTMLUnit.</li>
+                
+                  <li>Made large strides to bring a structured, measurable approach to performance testing for various HTTP and FTP-based cloud products using JMeter.</li>
+                
+                  <li>Familiar with socket-based programming, as well as asynchronous and threaded process development. Developed a custom client library to support the NNTP protocol as well as background jobs to precompute aggregate analytics on large datasets.</li>
+                
+                  <li>Primary maintainer for the product team&#39;s wiki documenting standards, best practices, how-to guides, and cross team policies.</li>
+                
+              </ul>
+            </div>
+          
+            <div class="resume-job">
+              <div class="resume-job-head">
+                <h3 class="resume-job-title">Web Software Engineer</h3>
+                <span class="resume-job-period">2008</span>
+              </div>
+              <p class="resume-job-company">Space Coast Credit Union</p>
+              <ul>
+                
+                  <li>Aided in the technical organization for the newly formed Web Systems department, focusing on the creation of standards and practices for developers as well as selecting the technology stack to work in cooperation with existing .NET applications.</li>
+                
+                  <li>Created and maintained an automated functional test suite, using Selenium, to validate custom vendor builds of the online banking platform, reducing response time from 2 weeks to 3 days.</li>
+                
+                  <li>Created and maintained a unified reporting application for the online banking system using .NET with C#, ASP.NET MVC, jQuery, LINQ, and iBatis.NET.</li>
+                
+                  <li>Prototyped a custom monitoring application for the online banking system using .NET with C#, WCF, Autofac, WMI, and LINQ.</li>
+                
+                  <li>Received training to work as a developer on the Corillian Voyager online banking platform including the Intelligent Authentication component.</li>
+                
+              </ul>
+            </div>
+          
+            <div class="resume-job">
+              <div class="resume-job-head">
+                <h3 class="resume-job-title">Technical Lead / Application Developer</h3>
+                <span class="resume-job-period">2006 – 2008</span>
+              </div>
+              <p class="resume-job-company">Westgate Resorts</p>
+              <ul>
+                
+                  <li>Aided in the creation, maintenance, and extension of over 30 web applications for internal and external business units utilizing ColdFusion, Java, Flex, and Oracle.</li>
+                
+                  <li>Implemented DevOps workflows to automate build, test, and deployment workflows.</li>
+                
+                  <li>Lead a major refactoring effort to improve application authentication, authorization, and auditing across multiple teams.</li>
+                
+                  <li>Responsible for training junior developers as well as developing and executing an architectural and code review process for multiple software teams.</li>
+                
+                  <li>Lead developers in documenting coding standards and best practices as well as procedures to keep documentation up-to-date and relevant.</li>
+                
+                  <li>Introduced a technical one-on-one review process to gather technical feedback and perspective from developers to help management set technical direction.</li>
+                
+              </ul>
+            </div>
+          
+            <div class="resume-job">
+              <div class="resume-job-head">
+                <h3 class="resume-job-title">Division Lead / Application Developer</h3>
+                <span class="resume-job-period">2005 – 2006</span>
+              </div>
+              <p class="resume-job-company">NextWeb Media</p>
+              <ul>
+                
+                  <li>Aided in the development of over 25 web applications focused on marketing and advertising.</li>
+                
+                  <li>Migrated and consolidated the code base for 21 applications into 10 through the introduction of a shared object model representing the problem domain and the optimization of major portions of each application&#39;s code base.</li>
+                
+                  <li>Improved partner integration by creating a standard service API adding features such as real-time messaging.</li>
+                
+                  <li>Utilized ColdFusion, Java, and MSSQL to create, enhance, and maintain the company&#39;s web applications.</li>
+                
+                  <li>Lead 2–3 person development teams on 10 project initiatives from inception to completion.</li>
+                
+              </ul>
+            </div>
+          
+            <div class="resume-job">
+              <div class="resume-job-head">
+                <h3 class="resume-job-title">Web Applications Manager</h3>
+                <span class="resume-job-period">2000 – 2005</span>
+              </div>
+              <p class="resume-job-company">Foreign Currency Exchange Corp. / Bank of Ireland Group</p>
+              <ul>
+                
+                  <li>Utilized object oriented practices to design and construct an international, enterprise web-based portal used for recording foreign currency transactions and reporting upon them.</li>
+                
+                  <li>Developed multiple applications using ColdFusion, Java, C#, ASP.NET, and MSSQL for both customer and in-house use.</li>
+                
+                  <li>Created and maintained over 50 projects from inception to completion.</li>
+                
+                  <li>Acted in the role of lead developer, regularly setting technology direction for all software development at the company for up to 7 developers at any one time.</li>
+                
+                  <li>Helped to grow a 3 person development staff to an 11 person department over 4 years.</li>
+                
+              </ul>
+            </div>
           
         </div>
-      </small>
+      </section>
     
-  </content>
+
+    
+      <section class="resume-section">
+        <h2>education</h2>
+        <div class="resume-edu-head">
+          <p class="resume-edu-school">University of Central Florida — Orlando, FL</p>
+          <span class="resume-edu-date">Graduated 2001</span>
+        </div>
+        <ul>
+          
+            <li>Bachelor of Science, Computer Science</li>
+          
+            <li>Minor, Management of Information Systems</li>
+          
+        </ul>
+      </section>
+    
+
+    
+      <section class="resume-section">
+        <h2>professional activities</h2>
+        <ul>
+          
+            <li>Reading and learning about distributed protocols such as Hyper and DAT along with solutions to problems around topics such as distributed identity management.</li>
+          
+            <li>Presenting on topics related to web development, DevOps for developers, testing strategies, and OSS projects at various user groups (corporate and community-based) as well as government / private institutions.</li>
+          
+            <li>Past contributor to OSS projects such as Fluint, FlexUnit, flex-mojos, and mockolate.</li>
+          
+            <li>As a hobby, I enjoy learning about home automation using Home Assistant with protocols like Z-Wave, Zigbee, Matter, Thread, etc.</li>
+          
+        </ul>
+      </section>
+    
+  </article>
+
+  <dialog id="qr-dialog">
+    <header class="qr-dialog-header">
+      <h3>Brian LeGros</h3>
+      <p><a href="https://legros.dev">https://legros.dev</a></p>
+    </header>
+    <div id="qr-canvas-wrap">
+      <div id="qr-output"></div>
+      <span class="qr-center-face" aria-hidden="true">( ^‿^ )</span>
+    </div>
+    <form method="dialog" class="qr-dialog-actions">
+      <button>Close</button>
+    </form>
+  </dialog>
+
+  <script src="/js/qrcode.min.js"></script>
+  <script>
+    (function () {
+      const name    = "Brian LeGros";
+      const email   = "me@brianlegros.com";
+      const website = "https://legros.dev";
+
+      const parts = name.split(' ');
+      const family = parts.length > 1 ? parts.pop() : '';
+      const given  = parts.join(' ');
+
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'FN:' + name,
+        'N:' + family + ';' + given + ';;;',
+        'EMAIL;TYPE=INTERNET:' + email,
+        'URL:' + website,
+        'END:VCARD',
+        ''
+      ].join('\r\n');
+
+      const btn = document.getElementById('qr-generate-btn');
+      const dlg = document.getElementById('qr-dialog');
+      const out = document.getElementById('qr-output');
+
+      btn.addEventListener('click', function () {
+        const qr = qrcode(0, 'H');
+        qr.addData(vcard);
+        qr.make();
+        out.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 4, scalable: true });
+        if (typeof dlg.showModal === 'function') dlg.showModal();
+        else dlg.setAttribute('open', '');
+      });
+    })();
+  </script>
+
+  <script>
+    
+
+    (function () {
+      const jobs = Array.from(document.querySelectorAll('.resume-job'));
+      if (!jobs.length) return;
+
+      const OFFSET = 120; 
+      let ticking = false;
+
+      function update() {
+        ticking = false;
+        let active = null;
+        for (const job of jobs) {
+          if (job.getBoundingClientRect().top - OFFSET <= 0) active = job;
+          else break; 
+        }
+        for (const job of jobs) {
+          job.classList.toggle('is-active', job === active);
+        }
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+  </script>
 
     </main>
     <footer>

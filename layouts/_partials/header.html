@@ -240,7 +240,7 @@
     <span class="avatar-keyboard">[⌨️]</span>
   </span>
   <span class="terminal-box is-typing">
-    <span id="terminal-prompt">me@legros.dev:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $</span><span class="terminal-typing-area"><span id="terminal-content"></span><span class="cursor"></span></span>
+    <span id="terminal-prompt">me@{{ site.Params.siteURL | default site.BaseURL | replaceRE "^https?://" "" | strings.TrimRight "/" }}:<span class="path">~/project</span>&nbsp;(<span class="branch">main</span>) $</span><span class="terminal-typing-area"><span id="terminal-content"></span><span class="cursor"></span></span>
   </span>
   <span class="terminal-close" onclick="permanentClose()">X</span>
 </h1>

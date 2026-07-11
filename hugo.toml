@@ -36,6 +36,9 @@ style = "catppuccin-mocha"
 [params]
 title = "legros.dev"
 description = "Brian LeGros' personal website"
+# Canonical public URL of the site. Used for display/links (resume, terminal prompt) so they
+# stay correct even when `hugo server` rewrites baseURL to localhost. Change here in one place.
+siteURL = "https://legros.dev"
 favicon = "images/favicon.png"
 dateFormat = "2006-01-02"
 hideMadeWithLine = true
