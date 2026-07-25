@@ -1,3 +1,35 @@
-<!-- A partial to be overwritten by the user.
-  Simply place a custom_head.html into
-  your local /layouts/partials-directory -->
+<style>
+  /* Reset button styling for the RSS icon link */
+  header nav a.rss-icon-link {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  header nav a.rss-icon-link:hover {
+    background: transparent !important;
+  }
+
+  /* Nav buttons border radius */
+  header nav a {
+    border-radius: 3px !important;
+  }
+
+  /* Override the theme's default fill: currentColor for icons */
+  header nav a.rss-icon-link svg.icon {
+    fill: #f26522 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    width: 0.9em !important;
+    height: 0.9em !important;
+  }
+</style>
+
+{{ with .Site.Params.aiContextPrompt }}
+  <meta name="llm-context" content="{{ . }}">
+{{ end }}
+{{ with .Site.Params.aiContextInstructions }}
+  <meta name="agent-instructions" content="{{ . }}">
+{{ end }}

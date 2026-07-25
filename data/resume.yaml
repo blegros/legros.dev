@@ -16,8 +16,8 @@ skills:
        "React Native", "RxJS", "SIP", "Spring", "Hibernate", "ASP.NET MVC", "AngularJS"]
   - category: "Testing"
     items:
-      ["vitest", "jest", "mocha", "chai", "sinon", "enzyme", "React Testing Library", "k6",
-       "selenium/webdriver", "JUnit", "JMock", "DBUnit", "HTMLUnit", "php-unit"]
+      ["Vitest", "Jest", "Mocha", "Chai", "Sinon", "React Testing Library", "Enzyme", "k6",
+       "Selenium/Webdriver", "JUnit", "JMock", "DBUnit", "HTMLUnit", "PHPUnit"]
   - category: "DevOps"
     items:
       ["Docker", "docker-compose", "GitHub Actions", "k8s", "Terraform", "Webpack", "Turbopack",
@@ -28,11 +28,11 @@ skills:
       ["PostgreSQL", "Redis", "Azure Table Storage", "MySQL", "MSSQL", "Oracle", "MongoDB",
        "CouchDB"]
   - category: "Messaging"
-    items: ["RabbitMQ", "Azure Service Bus", "NATS"]
+    items: ["RabbitMQ", "Azure System Bus", "Nats"]
   - category: "Cloud"
     items: ["Azure"]
   - category: "AI"
-    items: ["Claude", "GPT", "Gemini", "OpenCode", "Claude Code"]
+    items: ["Claude", "GPT", "Gemini", "OpenCode", "ClaudeCode"]
 
 experience:
   - title: "Senior Engineering Specialist, R&D"
@@ -42,7 +42,7 @@ experience:
     highlights:
       - "Launched a new product to production for a mobile and web-based application utilizing
          serverless technologies in the Azure cloud. Responsible for all architecture and design
-         decisions. Provided technical leadership for an engineering team of 15 developers and
+         decisions. Provided technical leadership for an engineering team of 15-20 developers and
          testers. Using Docker, NodeJS, React, PostgreSQL, Redis, GitHub Actions, and a multitude
          of Azure services."
       - "Leading multiple efforts to develop a middleware layer for a diverse set of products
@@ -73,10 +73,10 @@ experience:
     period: "2008 – 2014"
     logo: "highwinds.png"
     highlights:
-      - "Lead the technical aspects of development for the company's customer portal,
+      - "Led the technical aspects of development for the company's customer portal,
          StrikeTracker, using AngularJS, NodeJS, PHP, and MySQL as well as Java and Flex in earlier
          revisions."
-      - "Lead the technical aspects of product development for the company's RESTful web service
+      - "Led the technical aspects of product development for the company's RESTful web service
          API using Java and PHP."
       - "Administered a MySQL database used to store hundreds of millions of records of time-series
          network usage samples and various aggregations supporting customer portal analytics and
@@ -121,11 +121,11 @@ experience:
       - "Aided in the creation, maintenance, and extension of over 30 web applications for internal
          and external business units utilizing ColdFusion, Java, Flex, and Oracle."
       - "Implemented DevOps workflows to automate build, test, and deployment workflows."
-      - "Lead a major refactoring effort to improve application authentication, authorization, and
+      - "Led a major refactoring effort to improve application authentication, authorization, and
          auditing across multiple teams."
       - "Responsible for training junior developers as well as developing and executing an
          architectural and code review process for multiple software teams."
-      - "Lead developers in documenting coding standards and best practices as well as procedures
+      - "Led developers in documenting coding standards and best practices as well as procedures
          to keep documentation up-to-date and relevant."
       - "Introduced a technical one-on-one review process to gather technical feedback and
          perspective from developers to help management set technical direction."
@@ -143,7 +143,7 @@ experience:
          real-time messaging."
       - "Utilized ColdFusion, Java, and MSSQL to create, enhance, and maintain the company's web
          applications."
-      - "Lead 2–3 person development teams on 10 project initiatives from inception to completion."
+      - "Led 2 - 3 person development teams on 10 project initiatives from inception to completion."
 
   - title: "Web Applications Manager"
     company: "Foreign Currency Exchange Corp. / Bank of Ireland Group"
@@ -168,11 +168,9 @@ education:
     - "Minor, Management of Information Systems"
 
 activities:
-  - "Reading and learning about distributed protocols such as Hyper and DAT along with solutions
-     to problems around topics such as distributed identity management."
-  - "Presenting on topics related to web development, DevOps for developers, testing strategies,
-     and OSS projects at various user groups (corporate and community-based) as well as
-     government / private institutions."
+  - "Board member for the Brevard Symphony Orchestra working on AI data analysis and event engagement projects."
+  - "Providing AI training for small businesses in the Brevard County area"
+  - "Learning about distributed protocols such as Hyper/DAT and AT and their applications as well as distributed identity management."
+  - "Presenting on topics related to web development, DevOps for developers, testing strategies, and OSS projects at various user groups (corporate and community-based) as well as government / private institutions."
   - "Past contributor to OSS projects such as Fluint, FlexUnit, flex-mojos, and mockolate."
-  - "As a hobby, I enjoy learning about home automation using Home Assistant with protocols like
-     Z-Wave, Zigbee, Matter, Thread, etc."
+  - "As a hobby, I enjoy learning about home automation using Home Assistant with protocols like ZWave, Zigbee, Matter, Thread, etc."

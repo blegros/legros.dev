@@ -1,269 +1,156 @@
-{{ define "main" }}
-  {{ $siteURL := strings.TrimRight "/" (site.Params.siteURL | default site.BaseURL) }}
-  {{ $r := hugo.Data.resume }}
-  <style>
-    #qr-generate-btn {
-      font-family: var(--mono-font);
-    }
-    #qr-dialog {
-      border: 1px solid #333;
-      border-radius: 0.5rem;
-      padding: 1rem;
-      background: var(--bg);
-      color: var(--color);
-      max-width: 90vw;
-    }
-    #qr-dialog::backdrop {
-      background: rgba(0, 0, 0, 0.5);
-    }
-    .qr-dialog-header {
-      text-align: center;
-      margin-bottom: 0.75rem;
-    }
-    .qr-dialog-header h3 { margin: 0; }
-    .qr-dialog-header p  { margin: 0.15rem 0 0; font-size: 0.9rem; }
-    #qr-canvas-wrap {
-      position: relative;
-      display: block;
-      width: min(80vw, 320px);
-      margin: 0 auto;
-      background: #fff;
-      padding: 0.5rem;
-      border-radius: 0.25rem;
-    }
-    #qr-canvas-wrap svg {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .qr-center-face {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--mono-font);
-      background: #fff;
-      color: #111;
-      padding: 0.2rem 0.45rem;
-      border-radius: 0.25rem;
-      font-size: 0.95rem;
-      line-height: 1;
-      white-space: nowrap;
-      box-shadow: 0 0 0 2px #fff;
-    }
-    .qr-dialog-actions {
-      text-align: center;
-      margin-top: 0.75rem;
-    }
-  </style>
+{{ define "main" }} {{ $siteURL := strings.TrimRight "/" (site.Params.siteURL |
+default site.BaseURL) }} {{ $r := hugo.Data.resume }}
 
-  <article class="resume">
-    <header class="resume-head">
-      <h1 class="resume-name">{{ site.Params.author.name }}</h1>
-      <p class="resume-role">Software Engineer / Architect / Wearer of Many Hats</p>
-      <ul class="resume-contact">
-        {{ with $r.contact.location }}<li>📍 {{ . }}</li>{{ end }}
-        {{ with $r.contact.email }}<li>✉️ <a href="mailto:{{ . }}">{{ . }}</a></li>{{ end }}
-        <li>🔗 <a href="{{ $siteURL }}">{{ replace $siteURL "https://" "" }}</a></li>
-      </ul>
-      <div class="resume-actions">
-        <a class="button" href="/Brian-LeGros-Resume.pdf" download>Download PDF</a>
-        <button id="qr-generate-btn" type="button">Generate contact QR code</button>
-      </div>
-    </header>
+<article class="resume">
+  <header class="resume-head">
+    <h1 class="resume-name">{{ site.Params.author.name }}</h1>
+    <p class="resume-role">Software Engineer / Architect / Wearer of Hats</p>
+    <ul class="resume-contact">
+      {{ with $r.contact.location }}
+      <li>📍 {{ . }}</li>
+      {{ end }} {{ with $r.contact.email }}
+      <li>✉️ <a href="mailto:{{ . }}">{{ . }}</a></li>
+      {{ end }}
+      <li>
+        🔗 <a href="{{ $siteURL }}">{{ replace $siteURL "https://" "" }}</a>
+      </li>
+    </ul>
+    <div class="resume-actions">
+      <a class="button" href="/Brian-LeGros-Resume.pdf" download
+        >Download PDF</a
+      >
+      <button id="qr-generate-btn" type="button">
+        Generate contact QR code
+      </button>
+    </div>
+  </header>
 
-    {{ with $r.summary }}
-      <section class="resume-section">
-        <p class="resume-summary">{{ . }}</p>
-      </section>
-    {{ end }}
-
-    {{ with $r.skills }}
-      <section class="resume-section">
-        <h2>skills</h2>
-        {{ range . }}
-          <div class="resume-skill-group">
-            <p class="resume-skill-label">{{ .category }}</p>
-            <ul class="resume-chips">
-              {{ range .items }}
-                <li class="resume-chip">{{ . }}</li>
-              {{ end }}
-            </ul>
-          </div>
+  {{ with $r.summary }}
+  <section class="resume-section">
+    <p class="resume-summary">{{ . }}</p>
+  </section>
+  {{ end }} {{ with $r.skills }}
+  <section class="resume-section">
+    <h2>skills</h2>
+    {{ range . }}
+    <div class="resume-skill-group">
+      <p class="resume-skill-label">{{ .category }}</p>
+      <ul class="resume-chips">
+        {{ range .items }}
+        <li class="resume-chip">{{ . }}</li>
         {{ end }}
-      </section>
+      </ul>
+    </div>
     {{ end }}
-
-    {{ with $r.experience }}
-      <section class="resume-section">
-        <h2>experience</h2>
-        <div class="resume-timeline">
-          {{ range . }}
-            {{ $job := . }}
-            {{ $yrs := split .period "–" }}
-            {{ $start := trim (index $yrs 0) " " }}
-            {{ $end := $start }}
-            {{ if gt (len $yrs) 1 }}{{ $end = trim (index $yrs 1) " " }}{{ end }}
-            {{ $logo := "" }}
-            {{ with $job.logo }}{{ $logo = resources.Get (printf "images/%s" .) }}{{ end }}
-            <div class="resume-job">
-              <div class="resume-job-rail" aria-hidden="true">
-                <span class="resume-rail-line"></span>
-                {{ with $end }}<span class="resume-rail-end">{{ . }}</span>{{ end }}
-                <span class="resume-rail-triangles"><i></i><i></i><i></i></span>
-                <span class="resume-rail-start">{{ $start }}</span>
-              </div>
-              <div class="resume-job-main">
-                <div class="resume-job-logo">
-                  {{ if $logo }}
-                    {{ $fit := $logo.Fit "160x160" }}
-                    <img src="{{ $fit.RelPermalink }}" width="{{ $fit.Width }}" height="{{ $fit.Height }}" alt="{{ $job.company }} logo" loading="lazy" decoding="async">
-                  {{ else }}
-                    <span class="resume-job-logo-fallback" aria-hidden="true">{{ substr $job.company 0 1 }}</span>
-                  {{ end }}
-                </div>
-                <div class="resume-job-heading">
-                  <div class="resume-job-head">
-                    <h3 class="resume-job-title">{{ $job.title }}</h3>
-                    <span class="resume-job-period">{{ $job.period }}</span>
-                  </div>
-                  <p class="resume-job-company">{{ $job.company }}</p>
-                </div>
-              </div>
-              <ul>
-                {{ range $job.highlights }}
-                  <li>{{ . }}</li>
-                {{ end }}
-              </ul>
-            </div>
-          {{ end }}
+  </section>
+  {{ end }} {{ with $r.experience }}
+  <section class="resume-section">
+    <h2>experience</h2>
+    <div class="resume-timeline">
+      {{ range . }} {{ $job := . }} {{ $yrs := split .period "–" }} {{ $start :=
+      trim (index $yrs 0) " " }} {{ $end := $start }} {{ if gt (len $yrs) 1 }}{{
+      $end = trim (index $yrs 1) " " }}{{ end }} {{ $logo := "" }} {{ with
+      $job.logo }}{{ $logo = resources.Get (printf "images/%s" .) }}{{ end }}
+      <div class="resume-job">
+        <div class="resume-job-rail" aria-hidden="true">
+          <span class="resume-rail-line"></span>
+          {{ with $end }}<span class="resume-rail-end">{{ . }}</span>{{ end }}
+          <span class="resume-rail-triangles"><i></i><i></i><i></i></span>
+          <span class="resume-rail-start">{{ $start }}</span>
         </div>
-      </section>
-    {{ end }}
-
-    {{ with $r.education }}
-      {{ $eduLogo := "" }}
-      {{ with .logo }}{{ $eduLogo = resources.Get (printf "images/%s" .) }}{{ end }}
-      <section class="resume-section">
-        <h2>education</h2>
-        <div class="resume-edu">
-          {{ if $eduLogo }}
-            {{ $fit := $eduLogo.Fit "160x160" }}
-            <div class="resume-job-logo">
-              <img src="{{ $fit.RelPermalink }}" width="{{ $fit.Width }}" height="{{ $fit.Height }}" alt="{{ .school }} logo" loading="lazy" decoding="async">
+        <div class="resume-job-main">
+          <div class="resume-job-logo">
+            {{ if $logo }} {{ $fit := $logo.Fit "160x160" }}
+            <img
+              src="{{ $fit.RelPermalink }}"
+              width="{{ $fit.Width }}"
+              height="{{ $fit.Height }}"
+              alt="{{ $job.company }} logo"
+              loading="lazy"
+              decoding="async"
+            />
+            {{ else }}
+            <span class="resume-job-logo-fallback" aria-hidden="true"
+              >{{ substr $job.company 0 1 }}</span
+            >
+            {{ end }}
+          </div>
+          <div class="resume-job-heading">
+            <div class="resume-job-head">
+              <h3 class="resume-job-title">{{ $job.title }}</h3>
+              <span class="resume-job-period">{{ $job.period }}</span>
             </div>
-          {{ end }}
-          <div class="resume-edu-body">
-            <div class="resume-edu-head">
-              <p class="resume-edu-school">{{ .school }}</p>
-              <span class="resume-edu-date">{{ .date }}</span>
-            </div>
-            <ul>
-              {{ range .details }}
-                <li>{{ . }}</li>
-              {{ end }}
-            </ul>
+            <p class="resume-job-company">{{ $job.company }}</p>
           </div>
         </div>
-      </section>
-    {{ end }}
-
-    {{ with $r.activities }}
-      <section class="resume-section">
-        <h2>professional activities</h2>
         <ul>
-          {{ range . }}
-            <li>{{ . }}</li>
+          {{ range $job.highlights }}
+          <li>{{ . }}</li>
           {{ end }}
         </ul>
-      </section>
-    {{ end }}
-  </article>
-
-  <dialog id="qr-dialog">
-    <header class="qr-dialog-header">
-      <h3>{{ site.Params.author.name }}</h3>
-      <p><a href="{{ $siteURL }}">{{ $siteURL }}</a></p>
-    </header>
-    <div id="qr-canvas-wrap">
-      <div id="qr-output"></div>
-      <span class="qr-center-face" aria-hidden="true">( ^‿^ )</span>
+      </div>
+      {{ end }}
     </div>
-    <form method="dialog" class="qr-dialog-actions">
-      <button>Close</button>
-    </form>
-  </dialog>
+  </section>
+  {{ end }} {{ with $r.education }} {{ $eduLogo := "" }} {{ with .logo }}{{
+  $eduLogo = resources.Get (printf "images/%s" .) }}{{ end }}
+  <section class="resume-section">
+    <h2>education</h2>
+    <div class="resume-edu">
+      {{ if $eduLogo }} {{ $fit := $eduLogo.Fit "160x160" }}
+      <div class="resume-job-logo">
+        <img
+          src="{{ $fit.RelPermalink }}"
+          width="{{ $fit.Width }}"
+          height="{{ $fit.Height }}"
+          alt="{{ .school }} logo"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      {{ end }}
+      <div class="resume-edu-body">
+        <div class="resume-edu-head">
+          <p class="resume-edu-school">{{ .school }}</p>
+          <span class="resume-edu-date">{{ .date }}</span>
+        </div>
+        <ul>
+          {{ range .details }}
+          <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {{ end }} {{ with $r.activities }}
+  <section class="resume-section">
+    <h2>professional activities</h2>
+    <ul>
+      {{ range . }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</article>
 
-  <script src="/js/qrcode.min.js"></script>
-  <script>
-    (function () {
-      const name    = {{ site.Params.author.name | jsonify | safeJS }};
-      const email   = {{ site.Params.author.email | jsonify | safeJS }};
-      const website = {{ $siteURL | jsonify | safeJS }};
+<dialog id="qr-dialog">
+  <header class="qr-dialog-header">
+    <h3>{{ site.Params.author.name }}</h3>
+    <p><a href="{{ $siteURL }}">{{ $siteURL }}</a></p>
+  </header>
+  <div id="qr-canvas-wrap">
+    <div id="qr-output"></div>
+    <span class="qr-center-face" aria-hidden="true">( ^‿^ )</span>
+  </div>
+  <form method="dialog" class="qr-dialog-actions">
+    <button>Close</button>
+  </form>
+</dialog>
 
-      const parts = name.split(' ');
-      const family = parts.length > 1 ? parts.pop() : '';
-      const given  = parts.join(' ');
-
-      const vcard = [
-        'BEGIN:VCARD',
-        'VERSION:3.0',
-        'FN:' + name,
-        'N:' + family + ';' + given + ';;;',
-        'EMAIL;TYPE=INTERNET:' + email,
-        'URL:' + website,
-        'END:VCARD',
-        ''
-      ].join('\r\n');
-
-      const btn = document.getElementById('qr-generate-btn');
-      const dlg = document.getElementById('qr-dialog');
-      const out = document.getElementById('qr-output');
-
-      btn.addEventListener('click', function () {
-        const qr = qrcode(0, 'H');
-        qr.addData(vcard);
-        qr.make();
-        out.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 4, scalable: true });
-        if (typeof dlg.showModal === 'function') dlg.showModal();
-        else dlg.setAttribute('open', '');
-      });
-    })();
-  </script>
-
-  <script>
-    /* Highlight the experience timeline segment for the job currently at the top
-       of the viewport. The active job is the last one whose top has scrolled past
-       the detection line near the top of the viewport. */
-    (function () {
-      const jobs = Array.from(document.querySelectorAll('.resume-job'));
-      if (!jobs.length) return;
-
-      const OFFSET = 120; // px from the top that counts as "at the top of the viewport"
-      let ticking = false;
-
-      function update() {
-        ticking = false;
-        let active = null;
-        for (const job of jobs) {
-          if (job.getBoundingClientRect().top - OFFSET <= 0) active = job;
-          else break; // jobs are in document (top-to-bottom) order
-        }
-        for (const job of jobs) {
-          job.classList.toggle('is-active', job === active);
-        }
-      }
-
-      function onScroll() {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(update);
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      update();
-    })();
-  </script>
+{{ $qrCode := resources.Get "js/qrcode.min.js" | fingerprint }}
+<script src="{{ $qrCode.RelPermalink }}" defer></script>
+{{ $resumeJs := resources.Get "js/resume.js" | resources.ExecuteAsTemplate
+"js/resume.js" . | minify | fingerprint }}
+<script src="{{ $resumeJs.RelPermalink }}" defer></script>
 {{ end }}
