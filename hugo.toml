@@ -66,7 +66,7 @@ name = "home"
 pageRef = "/"
 weight = 10
 [[menu.main]]
-name = "blog"
+name = "read"
 pageRef = "/blog"
 weight = 20
 [[menu.main]]
