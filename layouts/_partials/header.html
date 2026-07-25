@@ -213,18 +213,45 @@
     animation: none !important;
   }
 
-  @media only screen and (max-width: 50rem) {
+  @media only screen and (max-width: 720px) {
+    header nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      border: var(--border-width) solid var(--border) !important;
+      border-radius: var(--standard-border-radius);
+      overflow: hidden;
+      padding: 0 !important;
+      margin-bottom: 1rem !important;
+    }
+    header nav a {
+      flex: 1;
+      text-align: center;
+      border: none !important;
+      padding: 0.4rem 0 !important;
+      text-decoration: none !important;
+      line-height: inherit !important;
+      margin: 0 !important;
+    }
+    header nav a.current {
+      background: var(--bg) !important;
+      color: var(--accent) !important;
+    }
+    header nav a.rss-icon-link {
+      flex: none !important;
+      padding: 0.4rem 1rem !important;
+    }
+
     .terminal-box {
       flex-grow: 0 !important;
+      margin-right: 0 !important;
       animation: none !important;
     }
     .cursor {
       animation: none !important;
     }
     .terminal-close {
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
+      display: none !important;
       animation: none !important;
     }
   }
@@ -372,7 +399,7 @@
       const prompt = document.getElementById("terminal-prompt");
       if (!header || !content || !prompt || isUserClosed) return;
 
-      const mql = window.matchMedia("(max-width: 50rem)");
+      const mql = window.matchMedia("(max-width: 720px)");
       if (mql.matches) return;
 
       const cycleId = ++currentCycleId;
@@ -395,7 +422,7 @@
     }
 
     // Initialize
-    const mql = window.matchMedia("(max-width: 50rem)");
+    const mql = window.matchMedia("(max-width: 720px)");
     mql.addEventListener("change", (e) => {
       if (e.matches) {
         window.tempReset();
