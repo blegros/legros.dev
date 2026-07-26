@@ -274,3 +274,24 @@ Change detected, rebuilding site (#42).
 Asset changed /js/resume.js
 Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
 Total in 2 ms
+adding created directory to watchlist /Users/blegros/Projects/legros.dev/layouts/_default
+
+Change detected, rebuilding site (#43).
+2026-07-25 20:35:38.710 -0400
+Template added /_default/rss.xml
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#44).
+2026-07-25 20:35:43.210 -0400
+Template changed /_default/rss.xml
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#45).
+2026-07-25 20:35:48.710 -0400
+Template changed /_default/rss.xml
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
