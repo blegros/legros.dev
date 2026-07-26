@@ -137,7 +137,7 @@ default site.BaseURL) }} {{ $r := hugo.Data.resume }}
 <dialog id="qr-dialog">
   <header class="qr-dialog-header">
     <div class="qr-dialog-header-content">
-      {{ $headshot := resources.Get "images/bgl_headshot_transparent.png" }} {{
+      {{ $headshot := resources.Get "images/bgl_headshot_outdoor.png" }} {{
       if $headshot }} {{ $headshotResized := $headshot.Resize "x64" }}
       <div
         class="qr-dialog-headshot-bg"

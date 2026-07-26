@@ -8,3 +8,4 @@ hugo.log
 /.hugo_build.lock
 /resources/_gen/
 /assets/jsconfig.json
+/hugo_server.log

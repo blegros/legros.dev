@@ -1,3 +1,5 @@
+import { startTypingSound, stopTypingSound } from "./audio.js";
+
 export const showPrompt = (visible) => {
   const prompt = document.getElementById("terminal-prompt");
   const box = document.querySelector(".terminal-box");
@@ -21,10 +23,19 @@ export const typeText = async (text, signal, speed = 80) => {
   content.innerHTML = "";
   showPrompt(true);
 
-  for (let i = 0; i < text.length; i++) {
-    if (signal.aborted) return;
-    content.textContent += text[i];
-    await new Promise((resolve) => setTimeout(resolve, speed));
+  //startTypingSound();
+
+  try {
+    for (let i = 0; i < text.length; i++) {
+      if (signal.aborted) {
+        //stopTypingSound();
+        return;
+      }
+      content.textContent += text[i];
+      await new Promise((resolve) => setTimeout(resolve, speed));
+    }
+  } finally {
+    //stopTypingSound();
   }
 };
 
