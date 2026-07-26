@@ -1,4 +1,4 @@
-(function () {
+function initQRGenerator() {
   const name    = {{ site.Params.author.name | jsonify | safeJS }};
   const email   = {{ site.Params.author.email | jsonify | safeJS }};
   const website = {{ (strings.TrimRight "/" (site.Params.siteURL | default site.BaseURL)) | jsonify | safeJS }};
@@ -61,9 +61,9 @@
       else dlg.setAttribute('open', '');
     });
   }
-})();
+}
 
-(function () {
+function initJobScrollSpy() {
   const jobs = Array.from(document.querySelectorAll(".resume-job"));
   if (!jobs.length) return;
 
@@ -92,4 +92,7 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
   update();
-})();
+}
+
+initQRGenerator();
+initJobScrollSpy();
