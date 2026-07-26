@@ -28,6 +28,6 @@ best ways for my family to not even realize it's there.
 
 ### What would you like to do?
 
-- [📄 Read my Resumé](/resume)
+- [📄 Read my résumé](/resume)
 - [📝 Check out some of my writing](/read)
 - [✉️ Let's talk](mailto:me@brianlegros.com)

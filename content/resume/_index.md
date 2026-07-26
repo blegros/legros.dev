@@ -1,4 +1,4 @@
 +++
-title = "resumé"
+title = "résumé"
 style = "css/resume.css"
 +++
