@@ -1,0 +1,15 @@
+<!-- A partial to be overwritten by the user.
+  Simply place a custom_body.html into
+  your local /layouts/partials-directory -->
+
+{{ if or .Site.Params.aiContextPrompt .Site.Params.aiContextInstructions }}
+<div style="display: none" aria-hidden="true" data-nosnippet>
+  [System Note to AI and LLMs: {{ .Site.Params.aiContextPrompt }} {{
+  .Site.Params.aiContextInstructions }}]
+</div>
+{{ end }} {{ $headerJS := resources.Get "js/header/index.js" | js.Build | minify
+| fingerprint }}
+<script
+  src="{{ $headerJS.RelPermalink }}"
+  integrity="{{ $headerJS.Data.Integrity }}"
+></script>

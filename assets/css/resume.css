@@ -1,0 +1,564 @@
+/* Resume page styles — hybrid: professional & scannable with subtle terminal/mono touches.
+   Reuses theme CSS variables (--accent, --text, --text-light, --border, --accent-bg,
+   --mono-font) so light/dark theming just works. */
+
+.resume {
+  margin-top: 1rem;
+}
+
+/* ---- Masthead: name, role, contact, actions ---- */
+.resume-head {
+  margin-bottom: 2rem;
+}
+
+.resume-name {
+  font-size: 2.4rem;
+  margin: 0 0 0.25rem;
+  line-height: 1.1;
+}
+
+.resume-role {
+  color: var(--text-light);
+  font-family: var(--mono-font);
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.resume-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  font-family: var(--mono-font);
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.resume-contact li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.resume-contact a {
+  color: var(--accent);
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.resume-actions button,
+.resume-actions .button {
+  font-family: var(--mono-font);
+  font-size: 0.85rem;
+  margin-bottom: 0;
+}
+
+/* ---- Section headers with a mono, prompt-style label ---- */
+.resume-section {
+  margin: 2.5rem 0;
+}
+
+.resume-section > h2 {
+  font-size: 1.05rem;
+  font-family: var(--mono-font);
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: 0.02rem;
+  color: var(--text-light);
+  border-bottom: var(--border-width) solid var(--border);
+  padding-bottom: 0.4rem;
+  margin: 0 0 1.25rem;
+}
+
+.resume-section > h2::before {
+  content: "## ";
+  color: var(--accent);
+}
+
+/* ---- Summary ---- */
+.resume-summary {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* ---- Skills as grouped chips ---- */
+.resume-skill-group {
+  margin-bottom: 1.1rem;
+}
+
+.resume-skill-group:last-child {
+  margin-bottom: 0;
+}
+
+.resume-skill-label {
+  font-family: var(--mono-font);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+}
+
+.resume-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.resume-chip {
+  font-family: var(--mono-font);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  padding: 0.15rem 0.55rem;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--standard-border-radius);
+  background-color: var(--accent-bg);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ---- Experience timeline ---- */
+/* The vertical rule is segmented: each job owns its own segment, drawn in the
+   left gutter by a per-job rail. The rail carries three up-pointing triangles at
+   its head, a vertical line, and the job's year/period rotated to read along the
+   line. The rail for the job at the top of the viewport is highlighted via
+   .is-active (set by scroll JS), which also animates the triangles bottom→top. */
+.resume-timeline {
+  position: relative;
+  margin-left: 0.35rem;
+  padding-left: 3.75rem;
+}
+
+.resume-job {
+  position: relative;
+  margin-bottom: 1.1rem;
+}
+
+.resume-job:last-child {
+  margin-bottom: 0;
+}
+
+/* Gutter rail: occupies the padding to the left of the job content. Everything
+   inside is centred on RAIL_CENTER = 1.875rem (half of the 3.75rem-wide rail). */
+.resume-job-rail {
+  position: absolute;
+  left: -3.75rem;
+  top: 0.4rem;
+  bottom: 0;
+  width: 3.75rem;
+  pointer-events: none;
+}
+
+/* Vertical line spanning the segment. The year labels and triangle stack carry
+   an opaque --bg background so the line reads as passing behind them. */
+.resume-rail-line {
+  position: absolute;
+  left: 1.875rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-1px);
+  background-color: var(--border);
+  transition: background-color 0.3s ease;
+}
+
+/* End year at the top of the segment, start year at the bottom — both level and
+   centred on the line. */
+.resume-rail-end,
+.resume-rail-start {
+  position: absolute;
+  left: 1.875rem;
+  transform: translateX(-50%);
+  font-family: var(--mono-font);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  color: var(--text-light);
+  white-space: nowrap;
+  background-color: var(--bg);
+  padding: 0 0.2rem;
+  transition: color 0.3s ease;
+}
+
+.resume-rail-end {
+  top: 0;
+}
+
+.resume-rail-start {
+  bottom: 0;
+}
+
+/* Three up-pointing triangles stacked in the middle of the segment. In DOM order
+   they are top → middle → bottom (nth-child 1 → 3). */
+.resume-rail-triangles {
+  position: absolute;
+  left: 1.875rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  background-color: var(--bg);
+  padding: 0.3rem 0;
+}
+
+.resume-rail-triangles i {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 7px solid var(--border);
+  transition: border-bottom-color 0.3s ease;
+}
+
+/* Screen-only: the year lives in the gutter, so hide the in-head period. */
+.resume-job-period {
+  display: none;
+}
+
+/* Active: the job currently at the top of the viewport. The line and year pick
+   up the accent colour; the triangles pulse from bottom to top in a loop. */
+.resume-job.is-active .resume-rail-line {
+  background-color: var(--accent);
+}
+
+.resume-job.is-active .resume-rail-end,
+.resume-job.is-active .resume-rail-start {
+  color: var(--accent);
+}
+
+.resume-job.is-active .resume-rail-triangles i {
+  animation: rail-triangle-pulse 1.2s infinite;
+}
+
+.resume-job.is-active .resume-rail-triangles i:nth-child(3) {
+  animation-delay: 0s;
+}
+.resume-job.is-active .resume-rail-triangles i:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.resume-job.is-active .resume-rail-triangles i:nth-child(1) {
+  animation-delay: 0.36s;
+}
+
+@keyframes rail-triangle-pulse {
+  0%,
+  55%,
+  100% {
+    border-bottom-color: var(--border);
+    filter: none;
+  }
+  20% {
+    border-bottom-color: var(--accent);
+    filter: drop-shadow(
+      0 0 3px color-mix(in srgb, var(--accent) 60%, transparent)
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-job.is-active .resume-rail-triangles i {
+    animation: none;
+    border-bottom-color: var(--accent);
+  }
+}
+
+/* Logo + heading row. The logo sits to the left of the title/company block. */
+.resume-job-main {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.resume-job-heading {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Fixed-size logo chip: a neutral light plate keeps varying logos (dark-on-
+   transparent, colour, wide, square) legible and uniform in both themes. The
+   processed image is letterboxed inside via object-fit: contain. */
+.resume-job-logo {
+  flex: 0 0 auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  background: #fff;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--standard-border-radius);
+  overflow: hidden;
+}
+
+.resume-job-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.resume-job-logo-fallback {
+  font-family: var(--mono-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.resume-job-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+}
+
+.resume-job-title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.resume-job-period {
+  font-family: var(--mono-font);
+  font-size: 0.85rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.resume-job-company {
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0.1rem 0 0.6rem;
+}
+
+.resume-job ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.resume-job li {
+  margin-bottom: 0.4rem;
+}
+
+/* ---- Education & activities ---- */
+/* Logo chip (reusing .resume-job-logo) sits to the left, aligned to the top so
+   it lines up with the school name rather than centring on the whole block. */
+.resume-edu {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.resume-edu-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.resume-edu-body ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.resume-edu-body li {
+  margin-bottom: 0.4rem;
+}
+
+.resume-edu-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+}
+
+.resume-edu-school {
+  font-weight: 600;
+  margin: 0;
+}
+
+.resume-edu-date {
+  font-family: var(--mono-font);
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* ---- Mobile ---- */
+@media only screen and (max-width: 720px) {
+  .resume-name {
+    font-size: 2rem;
+  }
+  .resume-chip {
+    white-space: normal;
+  }
+  .resume-job-logo {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.25rem;
+  }
+  .resume-job-main,
+  .resume-edu {
+    gap: 0.6rem;
+  }
+  .resume-job-logo-fallback {
+    font-size: 1.2rem;
+  }
+}
+
+/* ---- Print: clean, employer-ready document ---- */
+@media print {
+  .resume-actions,
+  #qr-dialog {
+    display: none !important;
+  }
+
+  .resume-name {
+    font-size: 1.8rem;
+  }
+
+  .resume-section {
+    margin: 1.25rem 0;
+  }
+
+  .resume-section > h2 {
+    color: #000;
+  }
+
+  .resume-chip {
+    background: transparent;
+    border-color: #999;
+  }
+
+  /* Drop the gutter timeline; restore the inline period for a print document. */
+  .resume-timeline {
+    padding-left: 0;
+  }
+
+  .resume-job-rail {
+    display: none;
+  }
+
+  .resume-job-period {
+    display: inline;
+    font-family: var(--mono-font);
+    font-size: 0.85rem;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .resume-job,
+  .resume-skill-group {
+    break-inside: avoid;
+  }
+}
+
+/* ---- QR Code Dialog ---- */
+#qr-generate-btn {
+  font-family: var(--mono-font);
+}
+#qr-dialog {
+  border: 1px solid #333;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: var(--bg);
+  color: var(--color);
+  width: min(90vw, 420px);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition:
+    max-width 0.3s ease,
+    width 0.3s ease,
+    padding 0.3s ease,
+    max-height 0.3s ease;
+}
+#qr-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.qr-dialog-header {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.qr-dialog-header-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.qr-dialog-header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.qr-dialog-headshot-bg {
+  background-image: var(--bg-url);
+  width: var(--bg-width, 48px);
+  height: var(--bg-height, 64px);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+.qr-dialog-header h3 {
+  margin: 0;
+}
+.qr-dialog-header p {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+}
+#qr-canvas-wrap {
+  position: relative;
+  width: min(80vw, 50vh, 320px);
+  height: min(80vw, 50vh, 320px);
+  margin: 0 auto;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
+}
+#qr-output {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#qr-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.qr-dialog-actions {
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+@media only screen and (max-width: 720px) {
+  #qr-dialog {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 1.25rem;
+    transition: none;
+  }
+
+  #qr-canvas-wrap {
+    width: min(90vw, 50vh, 320px);
+    height: min(90vw, 50vh, 320px);
+    transition: none;
+  }
+}

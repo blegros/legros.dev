@@ -1,0 +1,18 @@
+<nav>{{- partial "nav.html" . -}}</nav>
+<h1>
+  <span id="avatar-viewport">
+    <span class="avatar-face" id="avatar-face">( ಠ◡ಠ)</span>
+    <span class="emotion-space" id="avatar-reaction"></span>
+    <span class="avatar-keyboard">[⌨️]</span>
+  </span>
+  <span class="terminal-box is-typing">
+    <span id="terminal-prompt"
+      >me@{{ site.Params.siteURL | default site.BaseURL | replaceRE "^https?://"
+      "" | strings.TrimRight "/" }}:<span class="path">~/project</span
+      >&nbsp;(<span class="branch">main</span>) $</span
+    ><span class="terminal-typing-area"
+      ><span id="terminal-content"></span><span class="cursor"></span
+    ></span>
+  </span>
+  <span class="terminal-close" onclick="permanentClose()">X</span>
+</h1>

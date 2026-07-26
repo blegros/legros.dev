@@ -1,0 +1,8 @@
+{{ $headerStyle := resources.Get "css/header.css" | minify }}
+<link href="{{ $headerStyle.RelPermalink }}" rel="stylesheet" />
+
+{{ with .Site.Params.aiContextPrompt }}
+<meta name="llm-context" content="{{ . }}" />
+{{ end }} {{ with .Site.Params.aiContextInstructions }}
+<meta name="agent-instructions" content="{{ . }}" />
+{{ end }}

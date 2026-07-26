@@ -1,0 +1,166 @@
+{{ define "main" }} {{ $siteURL := strings.TrimRight "/" (site.Params.siteURL |
+default site.BaseURL) }} {{ $r := hugo.Data.resume }}
+
+<article class="resume">
+  <header class="resume-head">
+    <h1 class="resume-name">{{ site.Params.author.name }}</h1>
+    <p class="resume-role">Software Engineer / Architect / Wearer of Hats</p>
+    <ul class="resume-contact">
+      {{ with $r.contact.location }}
+      <li>📍 {{ . }}</li>
+      {{ end }} {{ with $r.contact.email }}
+      <li>✉️ <a href="mailto:{{ . }}">{{ . }}</a></li>
+      {{ end }}
+      <li>
+        🔗 <a href="{{ $siteURL }}">{{ replace $siteURL "https://" "" }}</a>
+      </li>
+    </ul>
+    <div class="resume-actions">
+      <a class="button" href="/Brian-LeGros-Resume.pdf" download
+        >Download PDF</a
+      >
+      <button id="qr-generate-btn" type="button">
+        Generate contact QR code
+      </button>
+    </div>
+  </header>
+
+  {{ with $r.summary }}
+  <section class="resume-section">
+    <p class="resume-summary">{{ . }}</p>
+  </section>
+  {{ end }} {{ with $r.skills }}
+  <section class="resume-section">
+    <h2>skills</h2>
+    {{ range . }}
+    <div class="resume-skill-group">
+      <p class="resume-skill-label">{{ .category }}</p>
+      <ul class="resume-chips">
+        {{ range .items }}
+        <li class="resume-chip">{{ . }}</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </section>
+  {{ end }} {{ with $r.experience }}
+  <section class="resume-section">
+    <h2>experience</h2>
+    <div class="resume-timeline">
+      {{ range . }} {{ $job := . }} {{ $yrs := split .period "–" }} {{ $start :=
+      trim (index $yrs 0) " " }} {{ $end := $start }} {{ if gt (len $yrs) 1 }}{{
+      $end = trim (index $yrs 1) " " }}{{ end }} {{ $logo := "" }} {{ with
+      $job.logo }}{{ $logo = resources.Get (printf "images/%s" .) }}{{ end }}
+      <div class="resume-job">
+        <div class="resume-job-rail" aria-hidden="true">
+          <span class="resume-rail-line"></span>
+          {{ with $end }}<span class="resume-rail-end">{{ . }}</span>{{ end }}
+          <span class="resume-rail-triangles"><i></i><i></i><i></i></span>
+          <span class="resume-rail-start">{{ $start }}</span>
+        </div>
+        <div class="resume-job-main">
+          <div class="resume-job-logo">
+            {{ if $logo }} {{ $fit := $logo.Fit "160x160" }}
+            <img
+              src="{{ $fit.RelPermalink }}"
+              width="{{ $fit.Width }}"
+              height="{{ $fit.Height }}"
+              alt="{{ $job.company }} logo"
+              loading="lazy"
+              decoding="async"
+            />
+            {{ else }}
+            <span class="resume-job-logo-fallback" aria-hidden="true"
+              >{{ substr $job.company 0 1 }}</span
+            >
+            {{ end }}
+          </div>
+          <div class="resume-job-heading">
+            <div class="resume-job-head">
+              <h3 class="resume-job-title">{{ $job.title }}</h3>
+              <span class="resume-job-period">{{ $job.period }}</span>
+            </div>
+            <p class="resume-job-company">{{ $job.company }}</p>
+          </div>
+        </div>
+        <ul>
+          {{ range $job.highlights }}
+          <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }} {{ with $r.education }} {{ $eduLogo := "" }} {{ with .logo }}{{
+  $eduLogo = resources.Get (printf "images/%s" .) }}{{ end }}
+  <section class="resume-section">
+    <h2>education</h2>
+    <div class="resume-edu">
+      {{ if $eduLogo }} {{ $fit := $eduLogo.Fit "160x160" }}
+      <div class="resume-job-logo">
+        <img
+          src="{{ $fit.RelPermalink }}"
+          width="{{ $fit.Width }}"
+          height="{{ $fit.Height }}"
+          alt="{{ .school }} logo"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      {{ end }}
+      <div class="resume-edu-body">
+        <div class="resume-edu-head">
+          <p class="resume-edu-school">{{ .school }}</p>
+          <span class="resume-edu-date">{{ .date }}</span>
+        </div>
+        <ul>
+          {{ range .details }}
+          <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </section>
+  {{ end }} {{ with $r.activities }}
+  <section class="resume-section">
+    <h2>professional activities</h2>
+    <ul>
+      {{ range . }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+</article>
+
+<dialog id="qr-dialog">
+  <header class="qr-dialog-header">
+    <div class="qr-dialog-header-content">
+      {{ $headshot := resources.Get "images/bgl_headshot_transparent.png" }} {{
+      if $headshot }} {{ $headshotResized := $headshot.Resize "x64" }}
+      <div
+        class="qr-dialog-headshot-bg"
+        style="--bg-url: url('{{ $headshotResized.RelPermalink }}'); --bg-width: {{ $headshotResized.Width }}px; --bg-height: {{ $headshotResized.Height }}px;"
+      ></div>
+      {{ end }}
+      <div class="qr-dialog-header-text">
+        <h3>{{ site.Params.author.name }}</h3>
+        <p><a href="{{ $siteURL }}">{{ $siteURL }}</a></p>
+      </div>
+    </div>
+  </header>
+  <div id="qr-canvas-wrap">
+    <div id="qr-output"></div>
+  </div>
+  <form method="dialog" class="qr-dialog-actions">
+    <button>Close</button>
+  </form>
+</dialog>
+
+{{ $qrCode := resources.Get "js/qrcode.min.js" | fingerprint }}
+<script src="{{ $qrCode.RelPermalink }}" defer></script>
+{{ $resumeJs := resources.Get "js/resume.js" | resources.ExecuteAsTemplate
+"js/resume.js" . | minify | fingerprint }}
+<script src="{{ $resumeJs.RelPermalink }}" defer></script>
+{{ end }}
