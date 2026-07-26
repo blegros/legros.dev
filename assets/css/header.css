@@ -96,10 +96,32 @@ header.is-opening .terminal-box {
 }
 
 #avatar-viewport {
-  display: inline-flex;
+  display: none;
   align-items: center;
   font-family: var(--mono-font);
   flex-shrink: 0;
+  white-space: nowrap;
+}
+
+header.is-opening #avatar-viewport {
+  display: inline-flex;
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  animation: reveal-avatar 1s ease-in-out 14s forwards;
+}
+
+header.is-expanded #avatar-viewport {
+  display: inline-flex;
+  max-width: 15rem;
+  opacity: 1;
+}
+
+@keyframes reveal-avatar {
+  to {
+    max-width: 15rem;
+    opacity: 1;
+  }
 }
 
 .avatar-face {

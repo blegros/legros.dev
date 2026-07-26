@@ -1,5 +1,6 @@
 # TODOS
 
+1. Remove face and keyboard when in mobile view.  Extend terminal box.
 1. Add support for scene sounds, toggle to mute sounds, and reaction sounds
 1. Add more scenes to headers
 1. Add the fun stuff for devs
