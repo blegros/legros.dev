@@ -1,2 +1,10 @@
 .idea/
 hugo.log
+
+# Hugo build output
+/public/
+
+# Hugo lock files and cache
+/.hugo_build.lock
+/resources/_gen/
+/assets/jsconfig.json

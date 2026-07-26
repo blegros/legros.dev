@@ -26,7 +26,7 @@ When I'm not at the office, I enjoy working with local non-profit organizations 
 better understand what it means to use AI and practically apply it.  I also really enjoy playing around with home automation and finding the
 best ways for my family to not even realize it's there.
 
-### Links
+### What would you like to do?
 
 - [📄 Read my Resumé](/resume)
 - [📝 Check out some of my writing](/read)
