@@ -295,3 +295,26 @@ Template changed /_default/rss.xml
 WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
 Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
 Total in 3 ms
+
+Change detected, rebuilding site (#46).
+2026-07-25 20:37:52.711 -0400
+Template changed /_default/rss.xml
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#47).
+2026-07-25 20:37:55.210 -0400
+Source changed /blog/test-post.md
+Source changed /other-post.md
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#48).
+2026-07-25 20:37:58.211 -0400
+Source changed /blog/test-post.md
+Source changed /other-post.md
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
