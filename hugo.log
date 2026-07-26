@@ -1,0 +1,276 @@
+WARN  deprecated: project config key languageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use locale instead.
+Watching for changes in /Users/blegros/Projects/legros.dev/archetypes, /Users/blegros/Projects/legros.dev/assets/{css,images,js}, /Users/blegros/Projects/legros.dev/content/{blog,resume}, /Users/blegros/Projects/legros.dev/data, /Users/blegros/Projects/legros.dev/i18n, /Users/blegros/Projects/legros.dev/layouts/{_partials,resume}, /Users/blegros/Projects/legros.dev/static/js, /Users/blegros/Projects/legros.dev/themes/hugo-simple/archetypes, /Users/blegros/Projects/legros.dev/themes/hugo-simple/assets, /Users/blegros/Projects/legros.dev/themes/hugo-simple/i18n, ... and 2 more
+Watching for config changes in /Users/blegros/Projects/legros.dev/hugo.toml, /Users/blegros/Projects/legros.dev/themes/hugo-simple/hugo.toml
+Start building sites … 
+hugo v0.164.0+extended+withdeploy darwin/arm64 BuildDate=2026-07-06T16:39:30Z VendorInfo=Homebrew
+
+WARN  deprecated: .Language.LanguageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use .Language.Locale instead.
+
+                  │ EN 
+──────────────────┼────
+ Pages            │  8 
+ Paginator pages  │  0 
+ Non-page files   │  0 
+ Static files     │  2 
+ Processed images │  8 
+ Aliases          │  2 
+ Cleaned          │  0 
+
+Built in 4 ms
+Environment: "development"
+Serving pages from disk
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1) 
+Press Ctrl+C to stop
+
+Change detected, rebuilding site (#1).
+2026-07-25 19:57:49.184 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#2).
+2026-07-25 19:58:00.684 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#3).
+2026-07-25 19:58:03.684 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#4).
+2026-07-25 19:58:54.684 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#5).
+2026-07-25 19:58:59.684 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 7 ms
+
+Change detected, rebuilding site (#6).
+2026-07-25 19:59:03.684 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#7).
+2026-07-25 20:00:17.184 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 9 ms
+
+Change detected, rebuilding site (#8).
+2026-07-25 20:00:24.184 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#9).
+2026-07-25 20:00:40.184 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#10).
+2026-07-25 20:00:44.684 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#11).
+2026-07-25 20:01:01.184 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#12).
+2026-07-25 20:04:05.183 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#13).
+2026-07-25 20:04:09.683 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#14).
+2026-07-25 20:04:19.683 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#15).
+2026-07-25 20:04:24.183 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#16).
+2026-07-25 20:05:50.683 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#17).
+2026-07-25 20:06:03.682 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#18).
+2026-07-25 20:06:07.182 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#19).
+2026-07-25 20:06:17.183 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#20).
+2026-07-25 20:09:03.182 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 7 ms
+
+Change detected, rebuilding site (#21).
+2026-07-25 20:09:07.182 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#22).
+2026-07-25 20:09:10.682 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#23).
+2026-07-25 20:09:33.182 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#24).
+2026-07-25 20:09:36.682 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#25).
+2026-07-25 20:12:42.182 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#26).
+2026-07-25 20:12:47.681 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#27).
+2026-07-25 20:13:00.181 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#28).
+2026-07-25 20:15:01.681 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#29).
+2026-07-25 20:16:12.680 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#30).
+2026-07-25 20:20:22.180 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#31).
+2026-07-25 20:20:39.180 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#32).
+2026-07-25 20:20:56.680 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#33).
+2026-07-25 20:21:01.180 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#34).
+2026-07-25 20:21:09.679 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#35).
+2026-07-25 20:24:16.179 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#36).
+2026-07-25 20:24:21.179 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#37).
+2026-07-25 20:26:07.178 -0400
+Template changed /resume/list.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#38).
+2026-07-25 20:26:15.179 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#39).
+2026-07-25 20:29:38.678 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#40).
+2026-07-25 20:29:52.678 -0400
+Asset changed /js/resume.js
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#41).
+2026-07-25 20:29:58.178 -0400
+Asset changed /js/resume.js
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#42).
+2026-07-25 20:31:31.707 -0400
+Asset changed /js/resume.js
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms

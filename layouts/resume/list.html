@@ -136,12 +136,22 @@ default site.BaseURL) }} {{ $r := hugo.Data.resume }}
 
 <dialog id="qr-dialog">
   <header class="qr-dialog-header">
-    <h3>{{ site.Params.author.name }}</h3>
-    <p><a href="{{ $siteURL }}">{{ $siteURL }}</a></p>
+    <div class="qr-dialog-header-content">
+      {{ $headshot := resources.Get "images/bgl_headshot_transparent.png" }} {{
+      if $headshot }} {{ $headshotResized := $headshot.Resize "x64" }}
+      <div
+        class="qr-dialog-headshot-bg"
+        style="--bg-url: url('{{ $headshotResized.RelPermalink }}'); --bg-width: {{ $headshotResized.Width }}px; --bg-height: {{ $headshotResized.Height }}px;"
+      ></div>
+      {{ end }}
+      <div class="qr-dialog-header-text">
+        <h3>{{ site.Params.author.name }}</h3>
+        <p><a href="{{ $siteURL }}">{{ $siteURL }}</a></p>
+      </div>
+    </div>
   </header>
   <div id="qr-canvas-wrap">
     <div id="qr-output"></div>
-    <span class="qr-center-face" aria-hidden="true">( ^‿^ )</span>
   </div>
   <form method="dialog" class="qr-dialog-actions">
     <button>Close</button>

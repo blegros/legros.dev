@@ -6,6 +6,8 @@
   const parts = name.split(' ');
   const family = parts.length > 1 ? parts.pop() : '';
   const given  = parts.join(' ');
+  const titleEl = document.querySelector('.resume-role');
+  const title = titleEl ? titleEl.innerText : 'Software Engineer / Architect / Wearer of Hats';
 
   const vcard = [
     'BEGIN:VCARD',
@@ -14,6 +16,8 @@
     'N:' + family + ';' + given + ';;;',
     'EMAIL;TYPE=INTERNET:' + email,
     'URL:' + website,
+    'ADR:;;;Indialantic;FL;32903;',
+    'NOTE:' + title,
     'END:VCARD',
     ''
   ].join('\r\n');
@@ -27,7 +31,32 @@
       const qr = qrcode(0, 'H');
       qr.addData(vcard);
       qr.make();
-      out.innerHTML = qr.createSvgTag({ cellSize: 6, margin: 4, scalable: true });
+      
+      const cellSize = 6;
+      const margin = 4;
+      const moduleCount = qr.getModuleCount();
+      const size = moduleCount * cellSize + margin * 2 * cellSize;
+      
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, size, size);
+      
+      ctx.fillStyle = '#000000';
+      for (let row = 0; row < moduleCount; row++) {
+        for (let col = 0; col < moduleCount; col++) {
+          if (qr.isDark(row, col)) {
+            ctx.fillRect((col + margin) * cellSize, (row + margin) * cellSize, cellSize, cellSize);
+          }
+        }
+      }
+      
+      out.innerHTML = '';
+      out.appendChild(canvas);
+      
       if (typeof dlg.showModal === 'function') dlg.showModal();
       else dlg.setAttribute('open', '');
     });

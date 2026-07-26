@@ -72,7 +72,8 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
    
   header nav a.rss-icon-link {
     border: none !important;
-    padding: 0 !important;
+    flex-grow: 0;
+    padding: 0 1rem !important;
     background: transparent !important;
     display: inline-flex !important;
     align-items: center;
@@ -322,18 +323,46 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
     animation: none !important;
   }
 
-  @media only screen and (max-width: 50rem) {
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: min(45rem, 90%);
+    margin: 0 auto 1rem auto;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--standard-border-radius);
+    overflow: hidden;
+    padding: 0;
+  }
+  header nav a {
+    flex: 1;
+    text-align: center;
+    border: none;
+    padding: 0.4rem 0;
+    text-decoration: none;
+    line-height: inherit;
+    margin: 0;
+  }
+  header nav a.current {
+    background: var(--bg);
+    color: var(--accent);
+  }
+  header nav a.rss-icon-link {
+    flex: none;
+    padding: 0.4rem 1rem;
+  }
+
+  @media only screen and (max-width: 720px) {
     .terminal-box {
       flex-grow: 0 !important;
+      margin-right: 0 !important;
       animation: none !important;
     }
     .cursor {
       animation: none !important;
     }
     .terminal-close {
-      visibility: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
+      display: none !important;
       animation: none !important;
     }
   }
@@ -350,7 +379,7 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
 >
 
 <a href="/blog/" 
-  >blog</a
+  >read</a
 >
 
 <a href="/resume/" 
@@ -507,7 +536,7 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
       const prompt = document.getElementById("terminal-prompt");
       if (!header || !content || !prompt || isUserClosed) return;
 
-      const mql = window.matchMedia("(max-width: 50rem)");
+      const mql = window.matchMedia("(max-width: 720px)");
       if (mql.matches) return;
 
       const cycleId = ++currentCycleId;
@@ -530,7 +559,7 @@ Let’s change this, one website at a time! Hugo Simple is a Hugo theme based on
     }
 
     
-    const mql = window.matchMedia("(max-width: 50rem)");
+    const mql = window.matchMedia("(max-width: 720px)");
     mql.addEventListener("change", (e) => {
       if (e.matches) {
         window.tempReset();
