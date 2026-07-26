@@ -4,7 +4,7 @@ languageCode = 'en-us'
 title = 'legros.dev'
 copyright = "Brian LeGros"
 theme = "hugo-simple"
-mainSections = ["blog", "resume"]
+mainSections = ["read", "resume"]
 
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
@@ -25,8 +25,8 @@ disableKinds = ["taxonomy"]
 tag = "tags"
 
 [permalinks]
-blog = "/:slugorcontentbasename/"
-tags = "/blog/:slug"
+read = "/:slugorcontentbasename/"
+tags = "/read/:slug"
 
 [markup.goldmark.renderer]
 unsafe = true
@@ -66,13 +66,13 @@ name = "home"
 pageRef = "/"
 weight = 10
 [[menu.main]]
-name = "read"
-pageRef = "/blog"
-weight = 20
-[[menu.main]]
 name = "resumé"
 pageRef = "/resume"
 weight = 20
+[[menu.main]]
+name = "read"
+pageRef = "/read"
+weight = 30
 
 [services.rss]
 limit = 50

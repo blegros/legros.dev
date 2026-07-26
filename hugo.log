@@ -352,3 +352,168 @@ Change detected, rebuilding site (#53).
 Template changed /rss.xml
 Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
 Total in 4 ms
+
+Change of config file detected, rebuilding site (#54).
+2026-07-25 20:39:55.711 -0400
+WARN  deprecated: project config key languageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Rebuilt in 15 ms
+adding created directory to watchlist /Users/blegros/Projects/legros.dev/content/read
+
+Change detected, rebuilding site (#55).
+2026-07-25 20:40:27.212 -0400
+Source changed /blog/_index.md
+Source changed /read/_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change of config file detected, rebuilding site (#56).
+2026-07-25 20:40:49.212 -0400
+WARN  deprecated: project config key languageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Rebuilt in 22 ms
+
+Change of config file detected, rebuilding site (#57).
+2026-07-25 20:40:53.212 -0400
+WARN  deprecated: project config key languageCode was deprecated in Hugo v0.158.0 and will be removed in a future release. Use locale instead.
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Rebuilt in 20 ms
+
+Change detected, rebuilding site (#58).
+2026-07-25 20:41:00.212 -0400
+Source changed /read/_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+adding created directory to watchlist /Users/blegros/Projects/legros.dev/layouts/shortcodes
+
+Change detected, rebuilding site (#59).
+2026-07-25 20:50:31.715 -0400
+Template added /shortcodes
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#60).
+2026-07-25 20:50:34.715 -0400
+Template added /shortcodes/profile_img.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#61).
+2026-07-25 20:50:38.715 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 77 ms
+
+Change detected, rebuilding site (#62).
+2026-07-25 20:50:44.715 -0400
+Template changed /shortcodes/profile_img.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#63).
+2026-07-25 20:52:10.216 -0400
+Asset changed /css/resume.css
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#64).
+2026-07-25 20:58:47.218 -0400
+Template changed /shortcodes/profile_img.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#65).
+2026-07-25 20:58:49.718 -0400
+Template changed /shortcodes/profile_img.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#66).
+2026-07-25 20:59:50.218 -0400
+Template changed /shortcodes/profile_img.html
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#67).
+2026-07-25 21:00:31.718 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#68).
+2026-07-25 21:49:37.673 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#69).
+2026-07-25 21:49:49.171 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 3 ms
+
+Change detected, rebuilding site (#70).
+2026-07-25 21:51:24.170 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#71).
+2026-07-25 21:52:50.670 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#72).
+2026-07-25 21:53:08.670 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#73).
+2026-07-25 21:53:25.170 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#74).
+2026-07-25 21:53:34.669 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#75).
+2026-07-25 21:53:43.170 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#76).
+2026-07-25 21:53:55.169 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#77).
+2026-07-25 21:54:09.669 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 1 ms
+
+Change detected, rebuilding site (#78).
+2026-07-25 21:54:23.169 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 4 ms
+
+Change detected, rebuilding site (#79).
+2026-07-25 21:54:29.669 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
+
+Change detected, rebuilding site (#80).
+2026-07-25 21:54:51.668 -0400
+Source changed /_index.md
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Total in 2 ms
