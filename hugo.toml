@@ -1,6 +1,6 @@
 # Basic config
 baseURL = 'https://legros.dev/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'legros.dev'
 copyright = "Brian LeGros"
 theme = "hugo-simple"
