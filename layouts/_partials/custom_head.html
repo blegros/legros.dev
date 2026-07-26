@@ -1,5 +1,9 @@
-{{ $headerStyle := resources.Get "css/header.css" | minify }}
-<link href="{{ $headerStyle.RelPermalink }}" rel="stylesheet" />
+{{ $headerStyle := resources.Get "css/header.css" | minify | fingerprint }}
+<link
+  href="{{ $headerStyle.RelPermalink }}"
+  rel="stylesheet"
+  integrity="{{ $headerStyle.Data.Integrity }}"
+/>
 
 {{ with .Site.Params.aiContextPrompt }}
 <meta name="llm-context" content="{{ . }}" />
