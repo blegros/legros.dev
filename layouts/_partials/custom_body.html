@@ -13,3 +13,11 @@
   src="{{ $headerJS.RelPermalink }}"
   integrity="{{ $headerJS.Data.Integrity }}"
 ></script>
+
+{{ $devOpts := dict "params" (dict "authorEmail" .Site.Params.author.email) }}
+{{ $devJS := resources.Get "js/dev/index.js" | js.Build $devOpts | minify |
+fingerprint }}
+<script
+  src="{{ $devJS.RelPermalink }}"
+  integrity="{{ $devJS.Data.Integrity }}"
+></script>
