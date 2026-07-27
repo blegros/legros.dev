@@ -10,7 +10,11 @@ export const successTestScript = {
     },
     {
       type: "result",
-      html: '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed',
+      segments: [
+        { text: "PASS", class: "terminal-pass" },
+        { text: " ✓ ", class: "terminal-success" },
+        { text: "42 tests passed" },
+      ],
       face: "( ^‿^ )",
       reaction: "✨",
       delayAfter: 5000,
@@ -30,7 +34,11 @@ export const fixAndRetryScript = {
     },
     {
       type: "result",
-      html: '<span class="terminal-fail">FAIL</span> <span class="terminal-error">✕</span> 3 tests failed, 39 passed',
+      segments: [
+        { text: "FAIL", class: "terminal-fail" },
+        { text: " ✕ ", class: "terminal-error" },
+        { text: "3 tests failed, 39 passed" },
+      ],
       face: "( ಠ_ʖಠ)",
       reaction: "💬",
       delayAfter: 3000,
@@ -44,7 +52,11 @@ export const fixAndRetryScript = {
     },
     {
       type: "result",
-      html: '<span class="terminal-pass">PASS</span> <span class="terminal-success">✓</span> 42 tests passed',
+      segments: [
+        { text: "PASS", class: "terminal-pass" },
+        { text: " ✓ ", class: "terminal-success" },
+        { text: "42 tests passed" },
+      ],
       face: "( ^‿^ )",
       reaction: "✨",
       delayAfter: 5000,

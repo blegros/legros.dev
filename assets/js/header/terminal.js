@@ -12,7 +12,7 @@ export const showPrompt = (visible) => {
 
 export const clearTerminal = () => {
   const content = document.getElementById("terminal-content");
-  if (content) content.innerHTML = "";
+  if (content) content.textContent = "";
   showPrompt(true);
 };
 
@@ -20,7 +20,7 @@ export const typeText = async (text, signal, speed = 80) => {
   const content = document.getElementById("terminal-content");
   if (!content) return;
 
-  content.innerHTML = "";
+  content.textContent = "";
   showPrompt(true);
 
   //startTypingSound();
@@ -39,14 +39,25 @@ export const typeText = async (text, signal, speed = 80) => {
   }
 };
 
-export const scrollResult = async (html, signal) => {
+const createResultNode = (segments) => {
+  const frag = document.createDocumentFragment();
+  for (const seg of segments) {
+    const span = document.createElement("span");
+    span.textContent = seg.text || "";
+    if (seg.class) span.className = seg.class;
+    frag.appendChild(span);
+  }
+  return frag;
+};
+
+export const scrollResult = async (segments, signal) => {
   const content = document.getElementById("terminal-content");
   if (!content) return;
 
   showPrompt(false);
 
-  if (!content.innerHTML) {
-    content.innerHTML = html;
+  if (!content.hasChildNodes() && !content.textContent) {
+    content.appendChild(createResultNode(segments));
     return;
   }
 
@@ -56,12 +67,14 @@ export const scrollResult = async (html, signal) => {
   container.style.verticalAlign = "bottom";
 
   const oldLine = document.createElement("div");
-  oldLine.innerHTML = content.innerHTML;
+  while (content.firstChild) {
+    oldLine.appendChild(content.firstChild);
+  }
   oldLine.style.transition =
     "transform 0.3s ease-in-out, opacity 0.3s ease-in-out";
 
   const newLine = document.createElement("div");
-  newLine.innerHTML = html;
+  newLine.appendChild(createResultNode(segments));
   newLine.style.position = "absolute";
   newLine.style.top = "100%";
   newLine.style.left = "0";
@@ -72,7 +85,7 @@ export const scrollResult = async (html, signal) => {
   container.appendChild(oldLine);
   container.appendChild(newLine);
 
-  content.innerHTML = "";
+  content.textContent = "";
   content.appendChild(container);
 
   void container.offsetWidth; // trigger reflow
@@ -84,5 +97,6 @@ export const scrollResult = async (html, signal) => {
   await new Promise((resolve) => setTimeout(resolve, 300));
   if (signal.aborted) return;
 
-  content.innerHTML = html;
+  content.textContent = "";
+  content.appendChild(createResultNode(segments));
 };

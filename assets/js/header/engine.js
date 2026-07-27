@@ -11,7 +11,7 @@ export const playScene = async (script, signal) => {
     if (stage.type === "typing") {
       await typeText(stage.text, signal);
     } else if (stage.type === "result") {
-      await scrollResult(stage.html, signal);
+      await scrollResult(stage.segments, signal);
     }
 
     if (signal.aborted) return;
