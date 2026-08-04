@@ -524,7 +524,7 @@
   width: min(80vw, 50vh, 320px);
   height: min(80vw, 50vh, 320px);
   margin: 0 auto;
-  background: #fff;
+  background: transparent;
   padding: 0.5rem;
   border-radius: 0.25rem;
   transition:
@@ -542,6 +542,11 @@
   display: block;
   width: 100% !important;
   height: 100% !important;
+}
+
+/* Invert QR code boxes to white when dark mode is active */
+html[data-theme="dark"] #qr-canvas-wrap canvas {
+  filter: invert(1);
 }
 .qr-dialog-actions {
   text-align: center;
