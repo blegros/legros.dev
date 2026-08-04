@@ -21,3 +21,9 @@ fingerprint }}
   src="{{ $devJS.RelPermalink }}"
   integrity="{{ $devJS.Data.Integrity }}"
 ></script>
+
+{{ $themeJS := resources.Get "js/theme/index.js" | js.Build | minify | fingerprint }}
+<script
+  src="{{ $themeJS.RelPermalink }}"
+  integrity="{{ $themeJS.Data.Integrity }}"
+></script>

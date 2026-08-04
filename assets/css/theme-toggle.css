@@ -1,0 +1,112 @@
+/* Force light mode */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fff;
+  --accent-bg: #f5f7ff;
+  --text: #212121;
+  --text-light: #585858;
+  --border: #898ea4;
+  --accent: #0d47a1;
+  --accent-hover: #1266e2;
+  --accent-text: var(--bg);
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #ffdd33;
+  --disabled: #efefef;
+}
+:root[data-theme="light"] img,
+:root[data-theme="light"] video {
+  opacity: 1;
+}
+
+/* Force dark mode */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #212121;
+  --accent-bg: #2b2b2b;
+  --text: #dcdcdc;
+  --text-light: #ababab;
+  --accent: #ffb300;
+  --accent-hover: #ffe099;
+  --accent-text: var(--bg);
+  --code: #f06292;
+  --preformatted: #ccc;
+  --disabled: #111;
+}
+:root[data-theme="dark"] img,
+:root[data-theme="dark"] video {
+  opacity: 0.8;
+}
+
+/* Grouping icons inside the flex nav */
+.nav-icons-container {
+  display: flex;
+  align-items: center;
+  flex: none; /* Don't stretch like the text links */
+}
+
+header nav .nav-icons-container a {
+  flex: none;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0.4rem 0.75rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background: transparent !important;
+}
+
+header nav .nav-icons-container a:hover {
+  background: transparent !important;
+}
+
+/* Remove weird margins/paddings from the svgs inside the container so they are centered */
+header nav .nav-icons-container a svg.icon {
+  margin: 0;
+  padding: 0;
+  width: 1em;
+  height: 1em;
+}
+
+/* Override the theme's default fill: currentColor for RSS icon */
+header nav .nav-icons-container a.rss-icon-link svg.icon {
+  fill: #f26522 !important;
+}
+
+/* Hide/show icons based on theme */
+.theme-toggle-icon {
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .icon-moon {
+  display: none;
+}
+html[data-theme="dark"] .icon-sun {
+  display: inline-block;
+}
+
+html[data-theme="light"] .icon-sun {
+  display: none;
+}
+html[data-theme="light"] .icon-moon {
+  display: inline-block;
+}
+
+/* Fallback for unset data-theme (relies on system preference) */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .icon-moon {
+    display: none;
+  }
+  html:not([data-theme="light"]) .icon-sun {
+    display: inline-block;
+  }
+}
+@media (prefers-color-scheme: light) {
+  html:not([data-theme="dark"]) .icon-sun {
+    display: none;
+  }
+  html:not([data-theme="dark"]) .icon-moon {
+    display: inline-block;
+  }
+}
