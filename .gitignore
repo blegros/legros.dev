@@ -9,3 +9,6 @@ hugo.log
 /resources/_gen/
 /assets/jsconfig.json
 /hugo_server.log
+
+# Temp files
+/.temp/
