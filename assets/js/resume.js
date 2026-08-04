@@ -42,8 +42,7 @@ function initQRGenerator() {
       canvas.height = size;
       const ctx = canvas.getContext('2d');
       
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, size, size);
+      // Removed white background fill so it stays transparent
       
       ctx.fillStyle = '#000000';
       for (let row = 0; row < moduleCount; row++) {

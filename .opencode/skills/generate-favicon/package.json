@@ -1,0 +1,9 @@
+{
+  "name": "generate-favicon",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "png-to-ico": "^2.1.8",
+    "sharp": "^0.33.5"
+  }
+}

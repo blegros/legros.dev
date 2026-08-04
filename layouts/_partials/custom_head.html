@@ -5,6 +5,31 @@
   integrity="{{ $headerStyle.Data.Integrity }}"
 />
 
+{{ $themeStyle := resources.Get "css/theme-toggle.css" | minify | fingerprint }}
+<link
+  href="{{ $themeStyle.RelPermalink }}"
+  rel="stylesheet"
+  integrity="{{ $themeStyle.Data.Integrity }}"
+/>
+
+<script>
+  (function() {
+    try {
+      var theme = localStorage.getItem("theme");
+      if (theme === "dark" || theme === "light") {
+        document.documentElement.setAttribute("data-theme", theme);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#121212">
+
 {{ with .Site.Params.aiContextPrompt }}
 <meta name="llm-context" content="{{ . }}" />
 {{ end }} {{ with .Site.Params.aiContextInstructions }}
